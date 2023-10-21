@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jew_core',
+    'auth',
 ]
 
 MIDDLEWARE = [
