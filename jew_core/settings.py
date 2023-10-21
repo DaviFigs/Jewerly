@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'users',
     'products',
     'orders',
-    'base'
+    'base',
+    'main_view'
 
 ]
 
