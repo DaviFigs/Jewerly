@@ -1,0 +1,11 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+div{
+    border: solid 1px black;
+  }
+.per50{
+    width: 25%;
+    height:100%;
+}
