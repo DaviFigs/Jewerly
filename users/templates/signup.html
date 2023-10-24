@@ -3,6 +3,49 @@
 {% block 'title'%}Cadastro{% endblock %}
 
 {%block 'body'%}
-<h1>Cadastro</h1>
+{% if messages %}
+        {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
+<br>
+<div class="container margem-top">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md radius background-color2">
+            <br>
+            <br>
+            <br>
+            <h1 style="text-align:center"><span class="font-color">Faça seu cadastro!!</span><h1>
+            <br>
+            <form method="POST" action="{% url 'auth_register' %}">{% csrf_token %}
+                <div class="mb-3 flex">
+                    <input required name="name" type="text" class="form-control margem-right" placeholder="Nome...">
+                    <input required name="last_name" type="text" class="form-control" placeholder="Último nome...">
+                </div>
+                <div class="mb-3">
+                    <input required name="email" type="text" class="form-control" placeholder="Email...">
+                </div>
+                <div class="mb-3">
+                    <input required name="username" type="text" class="form-control" placeholder="Username [Você poderá logar com esse username mais tarde]...">
+                </div>
+                <div class="mb-3 flex">
+                    <input required name="password" type="text" class="form-control margem-right" placeholder="Crie uma senha...">
+                    <input required name="conf_pass" type="text" class="form-control" placeholder="Confirme sua senha...">
+                </div>
+                <input type="submit" class="btn btn-success center" value="Criar conta"></input>
+            </form>
+            <div><a href="{% url 'render_login'%}"><button class="btn btn-outline-danger size-all">Já tem conta? Faça login!</button></a></div>
+            <br>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
+<br>
+<br>
 
 {%endblock%}

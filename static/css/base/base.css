@@ -1,6 +1,11 @@
-div{
+/*div{
     border: 1px solid black;
+}*/
+.font-color{
+    color: rgb(219, 217, 217);
 }
+.background-color{background-color: rgba(109, 12, 12, 0.856);}
+.background-color2{background-color: #212529;}
 .margem-left{
     padding-left: 3%;
 }
