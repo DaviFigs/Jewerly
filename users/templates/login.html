@@ -1,7 +1,35 @@
-{% extends "base.html" %}
+{% extends "base_without_nav.html"%}
 {% load static %}
 {% block 'title'%}Login{% endblock %}
 
 {%block 'body'%}
-<h1>Login</h1>
+<div class="container margem-top">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md radius">
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 style="text-align:center"><span class="">Faça login ou cadastre-se!!</span><h1>
+            <form method="POST" action="{% url 'auth_login' %}">{% csrf_token %}
+                <div class="mb-3">
+                    <input required name="user_or_mail" type="text" class="form-control" placeholder="Usuário ou Email...">
+                </div>
+                <div class="mb-3">
+                    <input required name="password" type="password" class="form-control" placeholder="Senha...">
+                </div>
+                <input type="submit" class="btn btn-success center" value="Login"></input>
+            </form>
+            <div><a href="{% url 'register'%}"><button class="btn btn-info size-all">Não tem conta? Crie agora!</button></a></div>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
 {%endblock%}

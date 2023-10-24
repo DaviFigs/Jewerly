@@ -1,12 +1,28 @@
+div{
+    border: 1px solid black;
+}
 .margem-left{
     padding-left: 3%;
 }
 .margem-right{
-    margin-right: 3%;
+    margin-right: 0.5%;
+}
+.margem-top{
+    margin-top: 3%;
 }
 .flex{
     display: flex;
 }
 .mini_margin{
     margin-left:1%;
+}
+.radius{
+    border-radius: 10px;
+}
+.margem-center{
+    margin: auto;
+}
+.size-all{
+    width: 100%;
+    height: 100%;
 }

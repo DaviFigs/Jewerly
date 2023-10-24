@@ -107,3 +107,11 @@ STATICFILES_DIRS = [
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.MyUser'
+
+MESSAGE_TAGS = {
+    constants.DEBUG:'alert-primary',
+    constants.ERROR:'alert-danger',
+    constants.SUCCESS:'alert-success',
+    constants.INFO:'alert-info',
+    constants.WARNING:'alert-warning'
+}

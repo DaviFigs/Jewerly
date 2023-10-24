@@ -1,4 +1,5 @@
 from django.contrib.auth import forms
+from django import forms as form
 from . models import MyUser
 
 class UserChangeForm(forms.UserChangeForm):#criamos um form para nosso user herdando do form padrão do django

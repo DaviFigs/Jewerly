@@ -10,7 +10,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand margem-left" href="#">Navbar</a>
+      <a class="navbar-brand margem-left" href="#">Jana Jóias</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,9 +38,17 @@
         </ul>
       </div>
       <form class="form-inline flex margem-right">
-        <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 mini_margin" type="submit">Search</button>
+        <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 mini_margin" type="submit">Buscar</button>
       </form>
+      {% if user.is_authenticated %}
+      <div class="margem-right">
+        <a href="#"><button class="btn btn-outline-danger my-2 my-sm-0 margem-right" type="submit">User</button></a></div>
+      {%else%}  
+      <div class="margem-right">
+        <a href="{% url "render_login" %}"><button class="btn btn-outline-danger my-2 my-sm-0 margem-right" type="submit">Login</button></a></div>
+      {% endif %}
+      
     </nav>
     {%block 'body'%}
     {%endblock%}

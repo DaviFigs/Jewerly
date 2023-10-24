@@ -3,5 +3,12 @@
 {% block 'title'%}Página Inicial{% endblock %}
 
 {%block 'body'%}
+    {% if messages %}
+        {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
     <h1>Página inicial</h1>
 {%endblock%}
