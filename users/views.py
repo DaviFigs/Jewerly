@@ -47,7 +47,7 @@ def auth_login(request):
 def auth_register(request):
     if request.method != 'POST':
         messages.add_message(request, constants.WARNING,'Método HHTP incorreto')
-        return render_register(request)
+        return redirect('render_register')
     else:
         try:
             name = request.POST.get('name')
@@ -55,10 +55,32 @@ def auth_register(request):
             email = request.POST.get('email')
             username = request.POST.get('username')
             password = request.POST.get('password')
-            conf_password = request.POST.get('conf_password')
-            #continuar a criação dos usuários
-
-
+            conf_pass = request.POST.get('conf_pass')
+            
+            if(password != conf_pass):
+                messages.add_message(request, constants.WARNING, 'Senhas não correspondem')
+                return redirect('render_register')
+            elif(len(password) <8 or len(password.strip())==0):
+                messages.add_message(request, constants.WARNING, 'Sua senha deve ter ao mínimo 8 dígitos')
+                return redirect('render_register')
+            elif(len(username.strip()) == 0):
+                messages.add_message(request, constants.WARNING, 'Preencha corretamente o usuário')
+                return redirect('render_register')
+            user = MyUser.objects.filter(username = username)
+            if(len(user) > 0):
+                messages.add_message(request,constants.ERROR,'Já existe um usuário com este nome!')
+                return redirect('render_register')
+            elif(len(user) == 0):
+                name = name.capitalize()
+                last_name = last_name.capitalize()
+                user = MyUser(username = username,
+                            password = password,
+                            email = email, first_name = name,
+                            last_name = last_name)
+                MyUser.save(user)
+                logon(request, user)
+                messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name},aproveite!')
+                return redirect('main')
         except:
             messages.add_message(request, constants.ERROR, 'Erro do sistema')
             return redirect('main')
