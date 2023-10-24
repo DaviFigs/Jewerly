@@ -6,5 +6,7 @@
 }
 .flex{
     display: flex;
-
+}
+.mini_margin{
+    margin-left:1%;
 }
