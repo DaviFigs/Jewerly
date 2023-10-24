@@ -1,11 +1,10 @@
-*{
-    padding: 0;
-    margin: 0;
+.margem-left{
+    padding-left: 3%;
 }
-div{
-    border: solid 1px black;
-  }
-.per50{
-    width: 25%;
-    height:100%;
+.margem-right{
+    margin-right: 3%;
+}
+.flex{
+    display: flex;
+
 }
