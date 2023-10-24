@@ -45,4 +45,20 @@ def auth_login(request):
             messages.add_message(request, constants.WARNING, 'Erro interno')
             return redirect('main')
 def auth_register(request):
-    pass
+    if request.method != 'POST':
+        messages.add_message(request, constants.WARNING,'Método HHTP incorreto')
+        return render_register(request)
+    else:
+        try:
+            name = request.POST.get('name')
+            last_name = request.POST.get('last_name')
+            email = request.POST.get('email')
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            conf_password = request.POST.get('conf_password')
+            #continuar a criação dos usuários
+
+
+        except:
+            messages.add_message(request, constants.ERROR, 'Erro do sistema')
+            return redirect('main')
