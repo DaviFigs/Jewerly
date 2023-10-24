@@ -4,7 +4,7 @@
 .font-color{
     color: rgb(219, 217, 217);
 }
-.background-color{background-color: rgba(109, 12, 12, 0.856);}
+.background-color{background-color: rgba(207, 204, 204, 0.856);}
 .background-color2{background-color: #212529;}
 .margem-left{
     padding-left: 3%;
@@ -12,8 +12,11 @@
 .margem-right{
     margin-right: 0.5%;
 }
+.ppadding-top{
+    padding-top: 4%;
+}
 .margem-top{
-    margin-top: 3%;
+    margin-top: 1%;
 }
 .flex{
     display: flex;

@@ -35,14 +35,14 @@ def auth_login(request):
             password = request.POST.get('password')
             user = authenticate(username = username, password = password)
             if user == None:
-                messages.add_message(request, constants.WARNING, f'Login ou senha incorretos {user}')
+                messages.add_message(request, constants.WARNING, 'Login ou senha incorretos ')
                 return redirect('render_login')
             elif user is not None:
                 logon(request, user)
-                messages.add_message(request, constants.SUCCESS, 'Login efetuado com sucesso')
+                messages.add_message(request, constants.SUCCESS, 'Login efetuado com sucesso!')
                 return redirect('main')
         except:
-            messages.add_message(request, constants.WARNING, 'Erro interno')
+            messages.add_message(request, constants.WARNING, 'Erro interno do sistema')
             return redirect('main')
 def auth_register(request):
     if request.method != 'POST':
@@ -79,8 +79,8 @@ def auth_register(request):
                             last_name = last_name)
                 MyUser.save(user)
                 logon(request, user)
-                messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name},aproveite!')
+                messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name}, aproveite!')
                 return redirect('main')
         except:
-            messages.add_message(request, constants.ERROR, 'Erro do sistema')
+            messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
             return redirect('main')
