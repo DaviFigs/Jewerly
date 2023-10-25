@@ -39,7 +39,8 @@ def auth_login(request):
                 return redirect('render_login')
             elif user is not None:
                 logon(request, user)
-                messages.add_message(request, constants.SUCCESS, 'Login efetuado com sucesso!')
+                name = request.user.first_name
+                messages.add_message(request, constants.SUCCESS, f'Bem vindo {name}!')
                 return redirect('main')
         except:
             messages.add_message(request, constants.WARNING, 'Erro interno do sistema')
