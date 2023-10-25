@@ -14,3 +14,4 @@ class Product(models.Model):
     description = models.CharField(max_length=200, null=False)
     amount = models.IntegerField()
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    num_sell = models.IntegerField(default=0)

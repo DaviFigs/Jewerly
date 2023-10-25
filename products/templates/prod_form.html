@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title'%}Cadastro de produto{% endblock %}
+
+{%block 'body'%}
+    {% if messages %}
+        {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md">
+            <form action="{% url 'auth_prod'%}">
+                {% csrf_token %}
+                {{form}}
+            </form>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    
+
+{%endblock%}

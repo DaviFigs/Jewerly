@@ -1,6 +1,9 @@
 /*div{
     border: 1px solid black;
 }*/
+body{
+    overflow-x: hidden;
+}
 .font-color{
     color: rgb(219, 217, 217);
 }
