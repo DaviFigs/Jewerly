@@ -13,15 +13,15 @@
     <br>
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md">
-            <form action="{% url 'auth_prod'%}">
+        <div class="col-md-6">
+            <form action="{% url 'auth_prod'%}" method="POST">
                 {% csrf_token %}
-                {{form}}
+                {{form.as_p}}
                 <br>
-                <input class="btn btn-success" value="Salvar Produto"></input>
+                <input type="submit"class="btn btn-success" value="Salvar Produto"></input>
             </form>
-
         </div>
+        <div class="col-md-4"></div>
         <div class="col-md-1"></div>
     </div>
     
