@@ -9,7 +9,7 @@ def prod_register(request):
     for i in alter_input:
         if i in alter_input:
             form.fields[i].widget.attrs['class']='form-control'
-            form.fields[i].widget.attrs['placeholder']=f'{i}'.capitalize()
+            form.fields[i].widget.attrs['placeholder']=f'Product {i}'
     context = {
         'form':form
     }
