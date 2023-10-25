@@ -9,7 +9,7 @@ def prod_register(request):
     for i in alter_input:
         if i in alter_input:
             form.fields[i].widget.attrs['class']='form-control'
-            form.fields[i].widget.attrs['placeholder']=f'{i}'
+            form.fields[i].widget.attrs['placeholder']=f'{i}'.capitalize()
     context = {
         'form':form
     }
@@ -20,7 +20,10 @@ def auth_prod_register(request):
         messages.add_message(request,constants.ERROR,'Método HHTP inválido')
         return redirect('main')
     else:
-        pass
+        form = FormProduct(request.POST)
+        if form.is_valid():
+            pass
+        
 
 
 

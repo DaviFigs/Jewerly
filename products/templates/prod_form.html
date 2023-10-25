@@ -17,6 +17,8 @@
             <form action="{% url 'auth_prod'%}">
                 {% csrf_token %}
                 {{form}}
+                <br>
+                <input class="btn btn-success" value="Salvar Produto"></input>
             </form>
 
         </div>
