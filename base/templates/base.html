@@ -42,11 +42,14 @@
         <button class="btn btn-outline-success my-2 my-sm-0 mini_margin" type="submit">Buscar</button>
       </form>
       {% if user.is_authenticated %}
-      <div class="margem-right">
-        <a href="#"><button class="btn btn-outline-danger my-2 my-sm-0 margem-right" type="submit">User</button></a></div>
-      {%else%}  
-      <div class="margem-right">
-        <a href="{% url "render_login" %}"><button class="btn btn-outline-danger my-2 my-sm-0 margem-right" type="submit">Login</button></a></div>
+      
+      <div class="margem-right size-user circle">
+        <a href="#"><button style="width:100%; height:100%;"class="circle btn btn-outline-info"></button></a>
+      </div>  
+      {%else%}
+      <div class="margem-right size-user circle">
+        <a href="{% url "render_login" %}"><button style="width:100%; height:100%;"class="circle btn btn-outline-info"></button></a>
+      </div>  
       {% endif %}
       
     </nav>

@@ -42,3 +42,12 @@ body{
     width: 50%;
     height: 100px;
 }
+
+.circle
+{
+    border-radius: 100%;
+}
+.size-user{
+    width: 40px;
+    height: 40px;
+}
