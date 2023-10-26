@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from main_view import views
+from django.conf import settings
+from django.conf.urls import static
 
 urlpatterns = [
     path('',views.home, name='main'),
@@ -11,3 +13,4 @@ urlpatterns = [
     path('base/', include ('base.urls')),
     path('main_view/', include('main_view.urls'))
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

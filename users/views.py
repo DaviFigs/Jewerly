@@ -5,13 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 
-def logout(request):
-    if request.user.is_authenticated:
-        logouts(request)
-        return redirect('main')
-    else:
-        messages.add_message(request, constants.WARNING,'Você precisa estar logado')
-        return redirect('main')
+
 def render_login(request):
     if request.user.is_authenticated:
         messages.add_message(request, constants.WARNING, 'Você já está logado!')
@@ -24,6 +18,14 @@ def render_register(request):
         return redirect('main')
     else:
         return render(request,('signup.html'))
+    
+def logout(request):
+    if request.user.is_authenticated:
+        logouts(request)
+        return redirect('main')
+    else:
+        messages.add_message(request, constants.WARNING,'Você precisa estar logado')
+        return redirect('main')
     
 def auth_login(request):
     if request.method != 'POST':

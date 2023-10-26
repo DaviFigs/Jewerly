@@ -13,6 +13,7 @@ class Historic(models.Model):
         return self.pk
 
 class MyUser(AbstractUser):
+    profile_pic = models.ImageField(null= True, blank=True)
     cpf = models.CharField(max_length=11, blank=True, null=True, unique=True)
     past_buys = models.IntegerField(default=0)
     cart = models.ForeignKey(Cart,blank=True, null=True, on_delete=models.CASCADE)
