@@ -9,7 +9,7 @@ class MyUserAdmin(adm.UserAdmin):
     add_form = UserCreationForm
     model = MyUser
     fieldsets = adm.UserAdmin.fieldsets + (
-        ('Informações Adicionais', {'fields' :("cpf", "past_buys","cart","historic")}),
+        ('Informações Adicionais', {'fields' :("profile_pic","cpf", "past_buys","cart","historic")}),
         )#Adicionamos ao fiedsets os campos adicionais que criamos no user
     readonly_fields = ("cpf", "past_buys","cart","historic" )
 
