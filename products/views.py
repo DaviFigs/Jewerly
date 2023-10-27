@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import FormProduct
 from django.contrib.messages import constants
 from django.contrib import messages
-
+from django.contrib.auth.decorators import permission_required,login_required
+#Can add product - ID: 41 - add_product
+#@permission_required('add_logentry', login_url='/base/main/')
+#user.user_permissions.add(74) Adiciona permissão conforme id
 def prod_register(request):
     form =FormProduct()
     alter_input = ('name', "price","description","amount","amount","category","image")

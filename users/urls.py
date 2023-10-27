@@ -8,4 +8,7 @@ urlpatterns = [
 
     path('register/', views.render_register, name="render_register"),
     path('auth_register/', views.auth_register, name="auth_register"),
+    #path('create_cart/', views.new_cart, name="new_cart")
+
+    
 ]

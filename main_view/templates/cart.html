@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block 'title'%}Carrinho{% endblock%}
+
+{%block 'body'%}
+    {% if user.cart is None%}
+    <h1>Sem carrinho</h1>
+    <a href="{% url "new_cart" %}">Criar carrinho</a>
+
+    {% else %}
+    <h1>Com carrinho</h1>
+    {% endif %}
+{% endblock%}

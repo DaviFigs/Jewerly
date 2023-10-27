@@ -6,12 +6,12 @@ DEFAULT = "users_pics/default.jpg"
 class Cart(models.Model):
     product = models.ManyToManyField(Product)
     def __str__(self):
-        return self.pk
+        return str(self.pk)
     
 class Historic(models.Model):
     product = models.ManyToManyField(Product)
     def __str__(self):
-        return self.pk
+        return str(self.pk)
 
 class MyUser(AbstractUser):
     profile_pic = models.ImageField(null= True, blank=True, upload_to='users_pics', default=DEFAULT)

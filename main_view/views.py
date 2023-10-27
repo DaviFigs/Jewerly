@@ -8,3 +8,6 @@ def home(request):
     }
 
     return render(request, 'site.html', context)
+
+def render_cart(request):
+    return render(request,'cart.html')

@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from .models import MyUser
+from .models import MyUser,Cart
 from django.contrib.messages import constants
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
+from django.contrib.auth.decorators import permission_required,login_required
 
 
 def render_login(request):
@@ -82,8 +83,29 @@ def auth_register(request):
                             last_name = last_name)
                 MyUser.save(user)
                 logon(request, user)
+                user = request.user
+                cart = Cart()
+                cart.id = user.id
+                cart.save()
+                user.cart = cart
+                user.save()
                 messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name}, aproveite!')
                 return redirect('main')
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
             return redirect('main')
+'''
+@login_required(login_url="render_login")
+def new_cart(request):
+    if request.user.cart is not None:
+        messages.add_message(request, constants.INFO, 'Você já possui um carrinho')
+        return redirect('main')
+    else:
+        cart = Cart(
+            name = f'Carrinho de {request.user.first_name}'
+        )
+        cart.save()
+        user = MyUser.objects.get(username = request.user.username)
+        user.cart = cart
+        user.save()'''
+
