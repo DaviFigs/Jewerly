@@ -1,6 +1,6 @@
-/*div{
-    border: 1px solid black;
-}*/
+div{
+    border: solid 1px black;
+}
 body{
     overflow-x: hidden;
 }
@@ -8,7 +8,7 @@ body{
     color: rgb(219, 217, 217);
 }
 .background-color{background-color: rgba(207, 204, 204, 0.856);}
-.background-color2{background-color: #212529;}
+.background-color2{background-color: #fc68e898;}
 .margem-left{
     padding-left: 3%;
 }

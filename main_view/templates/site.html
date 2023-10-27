@@ -12,19 +12,23 @@
     {% endif %}
     <br>
     <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-2">
-             
-        </div>
-        <div class="col-md-8">
-            
-            <h1>Página inicial</h1>
-            <h1>Página inicial</h1> 
-            <h1>Página inicial</h1>
-            <h1>Página inicial</h1>
-            <h1>Página inicial</h1>
-            <h1>Página inicial</h1>
+        <div class="col-md-2"></div>
+
+        <div class="col-md-9">
+                <div class="row">
+                    {% for i in product%}
+                    <br>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <img src="{{i.image}}" width="100%" height="100%">
+                        </div>
+                        <div class="row">
+                            <h6>{{i.name}} {{i.price}} R$</h6>
+                        </div>
+                    </div>
+                    {% endfor%} 
+                </div>
+     
         </div>
         <div class="col-md-1">
         </div>
