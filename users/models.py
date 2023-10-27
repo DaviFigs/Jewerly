@@ -9,7 +9,7 @@ class Historic(models.Model):
         return str(self.pk)
 
 class MyUser(AbstractUser):
-    profile_pic = models.ImageField(null= True, blank=True, upload_to='users_pics', default=DEFAULT)
+    profile_pic = models.ImageField(null= True, blank=True, upload_to='users_pics/', default=DEFAULT)
     cpf = models.CharField(max_length=11, blank=True, null=True, unique=True)
     past_buys = models.IntegerField(default=0)
     historic = models.ForeignKey(Historic, blank=True, null=True, on_delete=models.CASCADE)

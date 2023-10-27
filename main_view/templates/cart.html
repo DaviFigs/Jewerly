@@ -3,6 +3,17 @@
 {% block 'title'%}Carrinho{% endblock%}
 
 {%block 'body'%}
-    
-    {{user.cart.id_product}}
+    {{cart.id}}
+    {%for i in products%}
+        <br>
+        <div class="col-md-3">
+            <div class="row">
+                <img class="radius" src="{{i.image}}" width="100%" height="100%">
+            </div>
+            <div class="row">
+                <h6>&nbsp; {{i.name}} {{i.price}} R$</h6>
+                <p>{{i.description}}</p>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock%}

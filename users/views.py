@@ -6,21 +6,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 from django.contrib.auth.decorators import permission_required,login_required
-from django.contrib.auth.hashers import make_password
 
 
-def render_login(request):
-    if request.user.is_authenticated:
-        messages.add_message(request, constants.WARNING, 'Você já está logado!')
-        return redirect('main')
-    else:
-        return render(request, 'login.html')
-def render_register(request):
-    if request.user.is_authenticated:
-        messages.add_message(request, constants.WARNING, 'Você já está logado!')
-        return redirect('main')
-    else:
-        return render(request,('signup.html'))
+
     
 def logout(request):
     if request.user.is_authenticated:

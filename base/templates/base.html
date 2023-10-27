@@ -36,7 +36,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'render_cart'%}"><img width="27" height="27px"src="{% static "images/general/cart.png" %}"></a>
+            <a class="nav-link" href="{% url 'render_cart'%}"><img width="27" height="27px"src="/general/cart.png"></a>
           </li>
         </ul>
       </div>
@@ -51,7 +51,7 @@
       {%else%}
         <div class="margem-right size-user circle">
           <div class="margem-right size-user circle">
-            <a href="{% url 'render_login'%}"><img class="circle"width="40px" height="40px" src="{% static "images/users_pics/default.jpg" %}"></a>
+            <a href="{% url 'render_login'%}"><img class="circle"width="40px" height="40px" src="{%  url "images/users_pics/default.jpg" %}"></a>
           </div> 
         </div>  
       {% endif %}
