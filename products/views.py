@@ -5,7 +5,7 @@ from django.contrib import messages
 
 def prod_register(request):
     form =FormProduct()
-    alter_input = ('name', "price","description","amount","amount","category")
+    alter_input = ('name', "price","description","amount","amount","category","image")
     for i in alter_input:
         if i in alter_input:
             if i == "description":

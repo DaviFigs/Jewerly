@@ -1,6 +1,7 @@
 from django.db import models
 from products.models import Product
 from django.contrib.auth.models import AbstractUser
+DEFAULT = "users_pics/default.jpg"
 
 class Cart(models.Model):
     product = models.ManyToManyField(Product)
@@ -13,12 +14,11 @@ class Historic(models.Model):
         return self.pk
 
 class MyUser(AbstractUser):
-    profile_pic = models.ImageField(null= True, blank=True, upload_to='users_pics')
+    profile_pic = models.ImageField(null= True, blank=True, upload_to='users_pics', default=DEFAULT)
     cpf = models.CharField(max_length=11, blank=True, null=True, unique=True)
     past_buys = models.IntegerField(default=0)
     cart = models.ForeignKey(Cart,blank=True, null=True, on_delete=models.CASCADE)
     historic = models.ForeignKey(Historic, blank=True, null=True, on_delete=models.CASCADE)
     def __str__(self):
         return self.username
-
 
