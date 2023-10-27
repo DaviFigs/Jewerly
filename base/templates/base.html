@@ -44,7 +44,7 @@
         <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto..." aria-label="Search">
         <button class="btn btn-outline-dark my-2 my-sm-0 mini_margin" type="submit">Buscar</button>
       </form>
-      {% if user.profile_pic is not None %}
+      {% if user.is_authenticated %}
         <div class="margem-right size-user circle">
           <a href="#"><img class="circle"width="40px" height="40px" src="{{user.profile_pic}}"></a>
         </div>  
