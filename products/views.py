@@ -24,7 +24,7 @@ def prod_register(request):
 
 def auth_prod_register(request):
     if request.method == 'POST':
-        form = FormProduct(request.POST)
+        form = FormProduct(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             form.clean()
