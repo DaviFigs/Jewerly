@@ -12,7 +12,7 @@ def home(request):
 
 def render_cart(request):
     if request.user.is_authenticated:
-        cart = Cart.objects.get(user_id = request.user)
+        cart = Cart.objects.get(user = request.user)
         products = Product.objects.filter(cart = cart)
         context = {
             'cart':cart,

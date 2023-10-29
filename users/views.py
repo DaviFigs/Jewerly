@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import MyUser,Cart
+from .models import MyUser,Cart,Historic
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages
@@ -78,6 +78,10 @@ def auth_register(request):
                 cart = Cart(
                     user = request.user
                 )
+                historic = Historic(
+                    user = request.user
+                )
+                historic.save()
                 cart.save()
                 messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name}, aproveite!')
                 return redirect('main')
