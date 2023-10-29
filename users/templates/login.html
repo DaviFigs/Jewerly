@@ -18,7 +18,7 @@
         <div class="col-md radius background-color2">
             <br>
             <br>
-            
+            <a class="margem-top" href="{% url 'main'%}" style="text-align:center"><p class="margem-top">Voltar</p></a>
             <h1 style="text-align:center"><span class="font-color">Faça login ou cadastre-se!!</span><h1>
             <br>
             <form method="POST" action="{% url 'auth_login' %}">{% csrf_token %}

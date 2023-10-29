@@ -11,13 +11,17 @@ def home(request):
     return render(request, 'site.html', context)
 
 def render_cart(request):
-    cart = Cart.objects.get(user_id = request.user)
-    products = Product.objects.filter(cart = cart)
-    context = {
-        'cart':cart,
-        'products':products
-    }
-    return render(request, 'cart.html',context)
+    if request.user.is_authenticated:
+        cart = Cart.objects.get(user_id = request.user)
+        products = Product.objects.filter(cart = cart)
+        context = {
+            'cart':cart,
+            'products':products
+        }
+        return render(request, 'cart.html',context)
+    else:
+        messages.add_message(request, constants.WARNING,'Para acessar o carrinho, registre-se ou faça login em sua conta!' )
+        return redirect( 'render_login')
 
 def render_login(request):
     if request.user.is_authenticated:

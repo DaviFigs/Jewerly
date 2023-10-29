@@ -67,18 +67,18 @@ def auth_register(request):
             elif(len(user) == 0):
                 name = name.capitalize()
                 last_name = last_name.capitalize()
-                cart = Cart()
-                cart.save()
-                
                 user = MyUser(
                             username = username,
                             email = email,
                             first_name = name,
-                            last_name = last_name,
-                            cart = cart)
+                            last_name = last_name)
                 user.set_password(password)
                 user.save()
                 logon(request, user)
+                cart = Cart(
+                    user = request.user
+                )
+                cart.save()
                 messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name}, aproveite!')
                 return redirect('main')
         except:

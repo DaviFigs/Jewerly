@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'orders',
     'base',
     'main_view',
+    'media'
 
 ]
 
@@ -99,14 +100,13 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/media/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT= os.path.join('static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+MEDIA_URL = '/media/'
 
 
 
