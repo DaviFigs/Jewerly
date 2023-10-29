@@ -7,9 +7,7 @@ from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 from django.contrib.auth.decorators import permission_required,login_required
 
-
-
-    
+   
 def logout(request):
     if request.user.is_authenticated:
         logouts(request)
