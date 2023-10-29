@@ -1,13 +1,30 @@
 from django.shortcuts import render,redirect
 from .models import MyUser,Cart,Historic
-from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 from django.contrib.auth.decorators import permission_required,login_required
 
-   
+
+#RENDER DEFS
+def render_login(request):
+    if request.user.is_authenticated:
+        messages.add_message(request, constants.WARNING, 'Você já está logado!')
+        return redirect('main')
+    else:
+        return render(request, 'login.html')
+def render_register(request):
+    if request.user.is_authenticated:
+        messages.add_message(request, constants.WARNING, 'Você já está logado!')
+        return redirect('main')
+    else:
+        return render(request,'signup.html')
+
+
+
+
+#AUTH DEFS
 def logout(request):
     if request.user.is_authenticated:
         logouts(request)
@@ -73,12 +90,8 @@ def auth_register(request):
                 user.set_password(password)
                 user.save()
                 logon(request, user)
-                cart = Cart(
-                    user = request.user
-                )
-                historic = Historic(
-                    user = request.user
-                )
+                cart = Cart(user = request.user)
+                historic = Historic(user = request.user)
                 historic.save()
                 cart.save()
                 messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name}, aproveite!')

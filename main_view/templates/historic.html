@@ -1,0 +1,21 @@
+{%extends "base.html" %}
+{% load static %}
+{% block 'title'%}Histórico de compras{% endblock%}
+
+{%block 'body'%}
+    {% for i in products %}
+    <br>
+    <h2>Histórico de compras de {{user.first_name}}</h2>
+    <div class="col-md-3">
+        <div class="row">
+            <img class="radius" src="{{i.image.url}}" width="100%" height="100%">
+        </div>
+        <div class="row">
+            <h6>&nbsp; {{i.name}} {{i.price}} R$</h6>
+            <p>{{i.description}}</p>
+        </div>
+    </div>
+
+    {%endfor%}
+
+{% endblock%}

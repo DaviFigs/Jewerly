@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import permission_required,login_required
 #Can add product - ID: 41 - add_product
 #@permission_required('add_logentry', login_url='/base/main/')
 #user.user_permissions.add(74) Adiciona permissão conforme id
+
+
+#RENDER DEFS
 def prod_register(request):
     form =FormProduct()
     alter_input = ('name', "price","description","amount","amount","category","image")
@@ -22,6 +25,11 @@ def prod_register(request):
     }
     return render(request, 'prod_form.html', context)
 
+
+
+
+
+#AUTH DEFS
 def auth_prod_register(request):
     if request.method == 'POST':
         form = FormProduct(request.POST, request.FILES)
