@@ -35,23 +35,23 @@
             <div class="row">
                 <div class="col-md-12">
                     <br>
-                    <form method="POST" action="#">
+                    <div class="mb-3">
+                        <label>Username:</label>
+                        <input readonly class="form-control" placeholder="Username..." type="text" value="{{user.username}}">
+                    </div>
+                    <form method="POST" action="{% url 'alter_data'%}">
                         {%csrf_token %}
                         <div class="mb-3">
                             <label>Primeiro Nome:</label>
-                            <input class="form-control" placeholder="Nome..." type="text" value="{{user.first_name}}">
+                            <input name="first_name" class="form-control" placeholder="Nome..." type="text" value="{{user.first_name}}">
                         </div>
                         <div class="mb-3">
                             <label>Último Nome:</label>
-                            <input class="form-control" placeholder="Último Nome..." type="text" value="{{user.last_name}}">
-                        </div>
-                        <div class="mb-3">
-                            <label>Username:</label>
-                            <input class="form-control" placeholder="Username..." type="text" value="{{user.username}}">
+                            <input name="last_name" class="form-control" placeholder="Último Nome..." type="text" value="{{user.last_name}}">
                         </div>
                         <div class="mb-3">
                             <label>Email:</label>
-                            <input class="form-control" placeholder="Email..." type="email" value="{{user.email}}">
+                            <input name="email" class="form-control" placeholder="Email..." type="email" value="{{user.email}}">
                         </div>
                         <div class="mb-3">
                             <input type="submit"class="btn btn-outline-success" value="Atulizar dados">

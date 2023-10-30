@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 from django.contrib.auth.decorators import permission_required,login_required
-from PIL import Image
 
 
 #RENDER DEFS
@@ -15,6 +14,7 @@ def render_login(request):
         return redirect('main')
     else:
         return render(request, 'login.html')
+    
 def render_register(request):
     if request.user.is_authenticated:
         messages.add_message(request, constants.WARNING, 'Você já está logado!')
@@ -54,6 +54,7 @@ def auth_login(request):
         except:
             messages.add_message(request, constants.WARNING, 'Erro interno do sistema')
             return redirect('main')
+        
 def auth_register(request):
     if request.method != 'POST':
         messages.add_message(request, constants.WARNING,'Método HHTP incorreto')
@@ -114,5 +115,24 @@ def new_profile_pic(request):
         messages.add_message(request, constants.INFO, "Método HHTP inválido!")
         return redirect('main')
 
-    
+@login_required(login_url='render_login')
+def alter_data(request):
+    if request.method == 'POST':
+        user = MyUser.objects.get(username = request.user.username)
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.save()
+        messages.add_message(request, constants.SUCCESS, 'Seus dados foram alterados com sucesso!')
+        return redirect('render_profile')
+    else:
+        messages.add_message(request, constants.INFO, 'Método HHTP inválido!')
+        return redirect('main')
+
+
+
 
