@@ -54,12 +54,12 @@
       
           <ul class="menu__box">
             <li><div class="margem-right size-user circle">
-              <a href="{% url 'render_profile'%}"><img class="circle margin-left"width="40px" height="40px" src="{{user.profile_pic.url}}"></a>
+              <a href="{% url 'render_profile'%}"><img class="circle margem-left"width="40px" height="40px" src="{{user.profile_pic.url}}"></a>
             </div></li>
             <li><a class="menu__item" href="#">About</a></li>
             <li><a class="menu__item" href="#">Team</a></li>
             <li><a class="menu__item" href="#">Contact</a></li>
-            <li><a class="menu__item" href="#">Twitter</a></li>
+            <li><a class="menu__item" href="{% url 'logouts'%}">Sair</a></li>
           </ul>
         </div>
           
