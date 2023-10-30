@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import permission_required,login_required
 
 
 #RENDER DEFS
+
 def render_login(request):
     if request.user.is_authenticated:
         messages.add_message(request, constants.WARNING, 'Você já está logado!')
@@ -22,6 +23,9 @@ def render_register(request):
     else:
         return render(request,'signup.html')
 
+@login_required(login_url='render_login')
+def render_alter_pass(request):
+    return render(request, 'alter_pass.html')
 
 
 
@@ -123,14 +127,38 @@ def alter_data(request):
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         
-        user.first_name = first_name
-        user.last_name = last_name
+        user.first_name = first_name.capitalize()
+        user.last_name = last_name.capitalize()
         user.email = email
         user.save()
         messages.add_message(request, constants.SUCCESS, 'Seus dados foram alterados com sucesso!')
         return redirect('render_profile')
     else:
         messages.add_message(request, constants.INFO, 'Método HHTP inválido!')
+        return redirect('main')
+
+@login_required(login_url='render_login')
+def alter_password(request):
+    if request.method == 'POST':
+        user = MyUser.objects.get(username = request.user.username)
+        old_pass = request.POST.get('old_pass')
+        new_pass = request.POST.get('new_pass')
+        conf_pass = request.POST.get('conf_pass')
+        if user.password == old_pass:
+            if new_pass == conf_pass:
+                user.set_password(new_pass)
+                user.save()
+                messages.add_message(request, constants.SUCCESS, 'Sua senha foi alterada com sucesso')
+                logouts(request)
+                return redirect('render_login')
+            else:
+                messages.add_message(request, constants.WARNING, 'As senhas estão diferentes')
+                return redirect('render_alter_pass')
+        else:
+            messages.add_message(request, constants.WARNING, 'Senha atual incorreta!')
+            return redirect('render_alter_pass')
+    else:
+        messages.add_message(request, constants.WARNING, 'Método HTTP inválido!')
         return redirect('main')
 
 

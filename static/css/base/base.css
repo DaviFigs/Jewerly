@@ -1,4 +1,4 @@
-/*div{border: 1px solid black;}*/
+div{border: 1px solid black;}
 body
 {overflow-x: hidden;}
 .font-color
@@ -13,6 +13,9 @@ body
 {margin-right: 0.5%;}
 .margem-right-nav
 {margin-right: 5%;}
+.margin-divs{
+  margin:1%;
+}
 
 .ppadding-top
 {padding-top: 4%;}
