@@ -1,4 +1,4 @@
-div{border: 1px solid black;}
+
 body
 {overflow-x: hidden;}
 .font-color
@@ -8,13 +8,17 @@ body
 .background-color2
 {background-color: #fc68e898;}
 .margem-left
-{margin-left: 3%;}
+{padding-left: 3%;}
 .margem-right
 {margin-right: 0.5%;}
 .margem-right-nav
 {margin-right: 5%;}
 .margin-divs{
   margin:1%;
+}
+.padding-left-profile
+{
+  padding-left: 10%;
 }
 
 .ppadding-top
@@ -41,7 +45,10 @@ body
 .size-user{
     width: 40px;
     height: 40px;}
-
+.profile-circle-btn{
+  width: 80px;
+  height: 80px;
+}
 .pic-size{
     width: 40px;
     height: 40px;
