@@ -46,7 +46,7 @@
       </form>
       {% if user.is_authenticated %}
         <div class="margem-right size-user circle">
-          <a href="#"><img class="circle"width="40px" height="40px" src="{{user.profile_pic.url}}"></a>
+          <a href="{% url 'render_profile'%}"><img class="circle"width="40px" height="40px" src="{{user.profile_pic.url}}"></a>
         </div>  
       {%else%}
         <div class="margem-right size-user circle">

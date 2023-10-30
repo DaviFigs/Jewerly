@@ -1,0 +1,58 @@
+{%extends "base.html" %}
+{% load static %}
+{% block 'title'%}Histórico de compras{% endblock%}
+
+{%block 'body'%}
+    <br>
+    <div class="row">    
+        <div class="col-md-4">
+            <h1>Olá {{user.first_name}} !</h1>
+            <br>
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="radius" width="100%" height="100%" src="{{user.profile_pic.url}}"></img>
+                </div>
+                <div class="col-md-7">
+                    <form action="#" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <br>
+                        <div class="mb-3">
+                            <input placeholder="Foto de perfil"class="form-control" type="file">
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit"class="btn btn-outline-success" value="Salvar Foto">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+                    <form method="POST" action="#">
+                        {%csrf_token %}
+                        <div class="mb-3">
+                            <label>Primeiro Nome:</label>
+                            <input class="form-control" placeholder="Nome..." type="text" value="{{user.first_name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label>Último Nome:</label>
+                            <input class="form-control" placeholder="Último Nome..." type="text" value="{{user.last_name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label>Username:</label>
+                            <input class="form-control" placeholder="Username..." type="text" value="{{user.username}}">
+                        </div>
+                        <div class="mb-3">
+                            <label>Email:</label>
+                            <input class="form-control" placeholder="Email..." type="email" value="{{user.email}}">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">ariaa a a a  aaaa a aa</div>
+        <div class="col-md-4">ariaa a a a  aaaa a aa</div>
+    </div>
+
+{% endblock%}

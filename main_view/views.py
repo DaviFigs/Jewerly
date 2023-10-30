@@ -25,7 +25,7 @@ def render_cart(request):
         messages.add_message(request, constants.WARNING,'Para acessar o carrinho, registre-se ou faça login em sua conta!' )
         return redirect( 'render_login')
     
-def render_hist(request):
+def render_profile(request):
     if request.user.is_authenticated:
         historic = Historic.objects.get(user = request.user)
         products = Product.objects.filter(historic = historic)
@@ -33,9 +33,9 @@ def render_hist(request):
             'historic':historic,
             'products':products
         }
-        return render(request, 'historic.html', context)
+        return render(request, 'profile.html', context)
     else:
-        messages.add_message(request, constants.WARNING, 'Para acessar seu histórico, registre-se ou faça login em sua conta!')
+        messages.add_message(request, constants.WARNING, 'Para acessar seu perfil, registre-se ou faça login em sua conta!')
         return redirect('render_login')
 
 

@@ -1,50 +1,43 @@
-body{
-    overflow-x: hidden;
-}
-.font-color{
-    color: rgb(219, 217, 217);
-}
-.background-color{background-color: rgba(207, 204, 204, 0.856);}
-.background-color2{background-color: #fc68e898;}
-.margem-left{
-    padding-left: 3%;
-}
-.margem-right{
-    margin-right: 0.5%;
-}
-.ppadding-top{
-    padding-top: 4%;
-}
-.margem-top{
-    margin-top: 1%;
-}
-.flex{
-    display: flex;
-}
-.mini_margin{
-    margin-left:1%;
-}
-.radius{
-    border-radius: 17%;
-}
-.margem-center{
-    margin: auto;
-}
+div{border: 1px solid black;}
+body
+{overflow-x: hidden;}
+.font-color
+{color: rgb(219, 217, 217);}
+.background-color
+{background-color: rgba(207, 204, 204, 0.856);}
+.background-color2
+{background-color: #fc68e898;}
+.margem-left
+{padding-left: 3%;}
+.margem-right
+{margin-right: 0.5%;}
+.ppadding-top
+{padding-top: 4%;}
+.margem-top
+{margin-top: 1%;}
+.flex
+{display: flex;}
+.mini_margin
+{margin-left:1%;}
+.radius
+{border-radius: 17%;}
+.margem-center
+{margin: auto;}
 .size-all{
     width: 100%;
-    height: 100%;
-}
+    height: 100%;}
 .size-desc{
     padding-top: 0px;
     width: 50%;
-    height: 100px;
-}
-
+    height: 100px;}
 .circle
-{
-    border-radius: 100%;
-}
+{border-radius: 100%;}
 .size-user{
     width: 40px;
+    height: 40px;}
+
+.pic-size{
+    width: 40px;
     height: 40px;
+
 }
