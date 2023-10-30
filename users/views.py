@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 from django.contrib.auth.decorators import permission_required,login_required
+from PIL import Image
 
 
 #RENDER DEFS
@@ -100,4 +101,18 @@ def auth_register(request):
             messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
             return redirect('main')
 
+@login_required(login_url='render_login')
+def new_profile_pic(request):
+    if request.method == 'POST':
+        file = request.FILES.get('picture') 
+        user = MyUser.objects.get(username = request.user.username)
+        user.profile_pic = file
+        user.save()
+        messages.add_message(request, constants.INFO, "Sua imagem foi alterada com sucesso!")
+        return redirect('render_profile')
+    else:
+        messages.add_message(request, constants.INFO, "Método HHTP inválido!")
+        return redirect('main')
+
+    
 

@@ -3,8 +3,6 @@ from products.models import Product
 from users.models import Cart, Historic
 from django.contrib.messages import constants
 from django.contrib import messages
-#This file just render all urls of website
-#The rest of views proccess files and make the backend logic
 
 def home(request):
     product = Product.objects.all()

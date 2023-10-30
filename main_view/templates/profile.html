@@ -1,8 +1,15 @@
 {%extends "base.html" %}
 {% load static %}
-{% block 'title'%}Histórico de compras{% endblock%}
+{% block 'title'%}Perfil{% endblock%}
 
 {%block 'body'%}
+    {% if messages %}
+        {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
     <br>
     <div class="row">    
         <div class="col-md-4">
@@ -13,11 +20,11 @@
                     <img class="radius" width="100%" height="100%" src="{{user.profile_pic.url}}"></img>
                 </div>
                 <div class="col-md-7">
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{% url 'new_profile_pic'%}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <br>
                         <div class="mb-3">
-                            <input placeholder="Foto de perfil"class="form-control" type="file">
+                            <input name="picture"placeholder="Foto de perfil"class="form-control" type="file">
                         </div>
                         <div class="mb-3">
                             <input type="submit"class="btn btn-outline-success" value="Salvar Foto">
@@ -46,7 +53,9 @@
                             <label>Email:</label>
                             <input class="form-control" placeholder="Email..." type="email" value="{{user.email}}">
                         </div>
-
+                        <div class="mb-3">
+                            <input type="submit"class="btn btn-outline-success" value="Atulizar dados">
+                        </div>
                     </form>
                 </div>
             </div>
