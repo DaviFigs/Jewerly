@@ -134,5 +134,3 @@ def alter_data(request):
         return redirect('main')
 
 
-
-
