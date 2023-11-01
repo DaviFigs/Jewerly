@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <br>
                     <div class="mb-3">
-                        <label>Username:</label>
+                        <label>Username: <i>(nome de login)</i></label>
                         <input readonly class="form-control" placeholder="Username..." type="text" value="{{user.username}}">
                     </div>
                     <form method="POST" action="{% url 'alter_data'%}">
@@ -47,7 +47,7 @@
                             <input name="first_name" class="form-control" placeholder="Nome..." type="text" value="{{user.first_name}}">
                         </div>
                         <div class="mb-3">
-                            <label>Último Nome:</label>
+                            <label>Sobrenome:</label>
                             <input name="last_name" class="form-control" placeholder="Último Nome..." type="text" value="{{user.last_name}}">
                         </div>
                         <div class="mb-3">
@@ -58,6 +58,28 @@
                             <input type="submit"class="btn btn-outline-success" value="Atulizar dados">
                         </div>
                     </form>
+                    <br>
+                    <hr>
+                    <h4 class="center-text"><span style="color:red;">Informações Confidênciais</span></h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label>CPF: <i>(Não pode ser alterado por aqui!)</i></label>
+                                <input readonly class="form-control" type="text" value="{{user.cpf}}">
+                            </div>
+                            <div class="mb-3">
+                                <label>Número de compras feitas:</label>
+                                <input readonly class="form-control" placeholder="Username..." type="text" value="{{user.past_buys}}">
+                            </div>
+                            <div class="mb-3">
+                                <label>Data de registro:</label>
+                                <input readonly class="form-control" type="text" value="{{user.date_joined}}">
+                            </div>
+                            <div class="mb-3 align-center">
+                            <a href="{% url 'alter_pass'%}"><button class="btn btn-outline-danger">Clique aqui para trocar sua senha</button></a></div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -1,4 +1,15 @@
-
+div{
+  border: 1px solid black;
+}
+.center-text{
+  text-align: center;
+}
+.align-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 body
 {overflow-x: hidden;}
 .font-color
