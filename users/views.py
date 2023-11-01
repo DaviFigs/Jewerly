@@ -140,22 +140,27 @@ def alter_data(request):
 @login_required(login_url='render_login')
 def alter_password(request):
     if request.method == 'POST':
-        user = MyUser.objects.get(username = request.user.username)
-        old_pass = request.POST.get('old_pass')
+        username = request.POST.get('username')
+        current_pass = request.POST.get('current_pass')
         new_pass = request.POST.get('new_pass')
         conf_pass = request.POST.get('conf_pass')
-        if user.password == old_pass:
+        user = authenticate(username = username, password = current_pass)
+        if user != None:
             if new_pass == conf_pass:
-                user.set_password(new_pass)
-                user.save()
-                messages.add_message(request, constants.SUCCESS, 'Sua senha foi alterada com sucesso')
-                logouts(request)
-                return redirect('render_login')
+                if len(new_pass) <8 or len(new_pass.strip())==0:
+                    messages.add_message(request, constants.WARNING, 'Preencha os campos de senha corretamente')
+                    return redirect('render_alter_pass')
+                else:
+                    user.set_password(new_pass)
+                    user.save()
+                    messages.add_message(request, constants.SUCCESS, 'Sua senha foi alterada com sucesso')
+                    logouts(request)
+                    return redirect('render_login')
             else:
-                messages.add_message(request, constants.WARNING, 'As senhas estão diferentes')
+                messages.add_message(request, constants.WARNING, 'As senhas estão diferentes ou a nova senha tem menos de 8 dígitos')
                 return redirect('render_alter_pass')
         else:
-            messages.add_message(request, constants.WARNING, 'Senha atual incorreta!')
+            messages.add_message(request, constants.WARNING, 'Usuário ou senha inválidos!')
             return redirect('render_alter_pass')
     else:
         messages.add_message(request, constants.WARNING, 'Método HTTP inválido!')

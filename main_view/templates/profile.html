@@ -58,9 +58,11 @@
                             <input type="submit"class="btn btn-outline-success" value="Atulizar dados">
                         </div>
                     </form>
-                    <br>
                     <hr>
-                    <h4 class="center-text"><span style="color:red;">Informações Confidênciais</span></h4>
+                    <br>
+                    <h4 class="center-text"><span style="color:#DC3545;">Informações Confidênciais</span></h4>
+                    <br>
+        
                     <div class="row">
                         <div class="col-12">
                             <div class="mb-3">
@@ -76,7 +78,7 @@
                                 <input readonly class="form-control" type="text" value="{{user.date_joined}}">
                             </div>
                             <div class="mb-3 align-center">
-                            <a href="{% url 'alter_pass'%}"><button class="btn btn-outline-danger">Clique aqui para trocar sua senha</button></a></div>
+                            <a href="{% url 'render_alter_pass'%}"><button class="btn btn-outline-danger">Clique aqui para trocar sua senha</button></a></div>
                         </div>
                     </div>
                     

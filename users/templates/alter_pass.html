@@ -2,5 +2,45 @@
 {% load static %}
 {% block 'title'%}Troca de senha{% endblock %}
 {%block 'body'%}
+{% if messages %}
+        {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <br>
+<div class="container margem-top">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md radius background-color2">
+            <br>
+            <br>
+            <a class="margem-top" href="{% url 'main'%}" style="text-align:center"><p class="margem-top">Voltar</p></a>
+            <h1 style="text-align:center"><span class="font-color">Faça seu cadastro!!</span><h1>
+            <br>
+            <form method="POST" action="{% url 'auth_alter_pass' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input required name="username" type="text" class="form-control" placeholder="Digite seu usuário...">
+                </div>
+                <div class="mb-3">
+                    <input required name="current_pass" type="password" class="form-control" placeholder="Digite sua senha atual...">
+                </div>
+                <div class="mb-3 flex">
+                    <input required name="new_pass" type="password" class="form-control margem-right" placeholder="Crie sua nova senha...">
+                    <input required name="conf_pass" type="password" class="form-control" placeholder="Confirme sua nova senha...">
+                </div>
+                <input type="submit" class="btn btn-success" value="Mudar senha"></input>
+            </form>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
+<br>
+<br>
 
 {% endblock %}
