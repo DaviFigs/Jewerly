@@ -7,39 +7,56 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
 
 def home(request):
-    product = Product.objects.all()
-    context = {
-        'product':product}
-    return render(request, 'site.html', context)
+    try:
+        product = Product.objects.all()
+        context = {
+            'product':product
+            }
+        return render(request, 'site.html', context)
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
+        return redirect('main')
 
 @login_required(login_url = 'render_login')
 def render_cart(request):
-    cart = Cart.objects.get(user = request.user)
-    products = Product.objects.filter(cart = cart)
-    context = {
-        'cart':cart,
-        'products':products
-    }
-    return render(request, 'cart.html',context)
+    try:
+        cart = Cart.objects.get(user = request.user)
+        products = Product.objects.filter(cart = cart)
+        context = {
+            'cart':cart,
+            'products':products
+        }
+        return render(request, 'cart.html',context)
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
+        return redirect('main')
 
 @login_required(login_url = 'render_login')
 def render_profile(request):
-    historic = Historic.objects.get(user = request.user)
-    hist_products = Product.objects.filter(historic = historic)
-    context = {
-        'hist_products':hist_products,
-    }
-    return render(request,'profile.html',context)
+    try:
+        historic = Historic.objects.get(user = request.user)
+        hist_products = Product.objects.filter(historic = historic)
+        context = {
+            'hist_products':hist_products,
+        }
+        return render(request,'profile.html',context)
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
+        return redirect('main')
 
 def render_jew(request, id):
-    product = Product.objects.get(id = id)
-    if product is not None:
-        context = {
-            'product':product,
-        }
-        return render(request, 'product.html',context)
-    else:
-        messages.add_message(constants.WARNING, 'Este produto não existe')
+    try:
+        product = Product.objects.get(id = id)
+        if product is not None:
+            context = {
+                'product':product,
+            }
+            return render(request, 'product.html',context)
+        else:
+            messages.add_message(constants.WARNING, 'Este produto não existe')
+            return redirect('main')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
 

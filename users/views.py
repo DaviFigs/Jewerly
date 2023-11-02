@@ -10,37 +10,53 @@ from django.contrib.auth.decorators import permission_required,login_required
 #RENDER DEFS
 
 def render_login(request):
-    if request.user.is_authenticated:
-        messages.add_message(request, constants.WARNING, 'Você já está logado!')
+    try:
+        if request.user.is_authenticated:
+            messages.add_message(request, constants.WARNING, 'Você já está logado!')
+            return redirect('main')
+        else:
+            return render(request, 'login.html')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
-    else:
-        return render(request, 'login.html')
     
 def render_register(request):
-    if request.user.is_authenticated:
-        messages.add_message(request, constants.WARNING, 'Você já está logado!')
+    try:
+        if request.user.is_authenticated:
+            messages.add_message(request, constants.WARNING, 'Você já está logado!')
+            return redirect('main')
+        else:
+            return render(request,'signup.html')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
-    else:
-        return render(request,'signup.html')
 
 @login_required(login_url='render_login')
 def render_alter_pass(request):
-    return render(request, 'alter_pass.html')
+    try:
+        return render(request, 'alter_pass.html')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
+        return redirect('main')
 
 
 
 #AUTH DEFS
 @login_required(login_url='render_login')
 def logout(request):
-    logouts(request)
-    return redirect('main')
+    try:
+        logouts(request)
+        return redirect('main')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
+        return redirect('main')
     
 def auth_login(request):
-    if request.method != 'POST':
-        messages.add_message(request, constants.WARNING, 'Método HTTP inválido')
-        return redirect('main')
-    else:
-        try:
+    try:
+        if request.method != 'POST':
+            messages.add_message(request, constants.WARNING, 'Método HTTP inválido')
+            return redirect('main')
+        else:  
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(username = username, password = password)
@@ -52,16 +68,16 @@ def auth_login(request):
                 name = request.user.first_name
                 messages.add_message(request, constants.SUCCESS, f'Bem vindo {name}!')
                 return redirect('main')
-        except:
-            messages.add_message(request, constants.WARNING, 'Erro interno do sistema')
-            return redirect('main')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
+        return redirect('main')
         
 def auth_register(request):
-    if request.method != 'POST':
-        messages.add_message(request, constants.WARNING,'Método HHTP incorreto')
-        return redirect('render_register')
-    else:
-        try:
+    try:
+        if request.method != 'POST':
+            messages.add_message(request, constants.WARNING,'Método HHTP incorreto')
+            return redirect('render_register')
+        else:
             name = request.POST.get('name')
             last_name = request.POST.get('last_name')
             email = request.POST.get('email')
@@ -99,69 +115,80 @@ def auth_register(request):
                 cart.save()
                 messages.add_message(request, constants.SUCCESS,f'Muito obrigado por se juntar a nós {name} {last_name}, aproveite!')
                 return redirect('main')
-        except:
-            messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
-            return redirect('main')
-
-@login_required(login_url='render_login')
-def new_profile_pic(request):
-    if request.method == 'POST':
-        file = request.FILES.get('picture') 
-        user = MyUser.objects.get(username = request.user.username)
-        user.profile_pic = file
-        user.save()
-        messages.add_message(request, constants.INFO, "Sua imagem foi alterada com sucesso!")
-        return redirect('render_profile')
-    else:
-        messages.add_message(request, constants.INFO, "Método HHTP inválido!")
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
 @login_required(login_url='render_login')
+def new_profile_pic(request):
+    try:
+        if request.method == 'POST':
+            file = request.FILES.get('picture') 
+            user = MyUser.objects.get(username = request.user.username)
+            user.profile_pic = file
+            user.save()
+            messages.add_message(request, constants.INFO, "Sua imagem foi alterada com sucesso!")
+            return redirect('render_profile')
+        else:
+            messages.add_message(request, constants.INFO, "Método HHTP inválido!")
+            return redirect('main')
+    except:
+        messages.add_message(request,constants.ERROR, 'Erro inesperado, tente novamente')
+        return redirect('main')
+    
+
+@login_required(login_url='render_login')
 def alter_data(request):
-    if request.method == 'POST':
-        user = MyUser.objects.get(username = request.user.username)
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        
-        user.first_name = first_name.capitalize()
-        user.last_name = last_name.capitalize()
-        user.email = email
-        user.save()
-        messages.add_message(request, constants.SUCCESS, 'Seus dados foram alterados com sucesso!')
-        return redirect('render_profile')
-    else:
-        messages.add_message(request, constants.INFO, 'Método HHTP inválido!')
+    try:
+        if request.method == 'POST':
+            user = MyUser.objects.get(username = request.user.username)
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            email = request.POST.get('email')
+            
+            user.first_name = first_name.capitalize()
+            user.last_name = last_name.capitalize()
+            user.email = email
+            user.save()
+            messages.add_message(request, constants.SUCCESS, 'Seus dados foram alterados com sucesso!')
+            return redirect('render_profile')
+        else:
+            messages.add_message(request, constants.INFO, 'Método HHTP inválido!')
+            return redirect('main')
+    except:
+        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente')
         return redirect('main')
 
 @login_required(login_url='render_login')
 def alter_password(request):
-    
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        current_pass = request.POST.get('current_pass')
-        new_pass = request.POST.get('new_pass')
-        conf_pass = request.POST.get('conf_pass')
-        user = authenticate(username = username, password = current_pass)
-        if user != None:
-            if new_pass == conf_pass:
-                if len(new_pass) <8 or len(new_pass.strip())==0:
-                    messages.add_message(request, constants.WARNING, 'Preencha os campos de senha corretamente')
-                    return redirect('render_alter_pass')
+    try:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            current_pass = request.POST.get('current_pass')
+            new_pass = request.POST.get('new_pass')
+            conf_pass = request.POST.get('conf_pass')
+            user = authenticate(username = username, password = current_pass)
+            if user != None:
+                if new_pass == conf_pass:
+                    if len(new_pass) <8 or len(new_pass.strip())==0:
+                        messages.add_message(request, constants.WARNING, 'A senha deve conter no mínimo 8 caracteres')
+                        return redirect('render_alter_pass')
+                    else:
+                        user.set_password(new_pass)
+                        user.save()
+                        messages.add_message(request, constants.SUCCESS, 'Sua senha foi alterada com sucesso')
+                        logouts(request)
+                        return redirect('render_login')
                 else:
-                    user.set_password(new_pass)
-                    user.save()
-                    messages.add_message(request, constants.SUCCESS, 'Sua senha foi alterada com sucesso')
-                    logouts(request)
-                    return redirect('render_login')
+                    messages.add_message(request, constants.WARNING, 'As senhas estão diferentes')
+                    return redirect('render_alter_pass')
             else:
-                messages.add_message(request, constants.WARNING, 'As senhas estão diferentes ou a nova senha tem menos de 8 dígitos')
+                messages.add_message(request, constants.WARNING, 'Usuário ou senha inválidos!')
                 return redirect('render_alter_pass')
         else:
-            messages.add_message(request, constants.WARNING, 'Usuário ou senha inválidos!')
-            return redirect('render_alter_pass')
-    else:
-        messages.add_message(request, constants.WARNING, 'Método HTTP inválido!')
+            messages.add_message(request, constants.WARNING, 'Método HTTP inválido!')
+            return redirect('main')
+    except:
+        messages.add_message(request,constants.ERROR, 'Erro inesperado, tente novamente')
         return redirect('main')
-
 
