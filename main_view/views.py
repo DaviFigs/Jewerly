@@ -26,12 +26,11 @@ def render_cart(request):
 def render_profile(request):
     if request.user.is_authenticated:
         historic = Historic.objects.get(user = request.user)
-        products = Product.objects.filter(historic = historic)
+        hist_products = Product.objects.filter(historic = historic)
         context = {
-            'historic':historic,
-            'products':products
+            'hist_products':hist_products,
         }
-        return render(request, 'profile.html', context)
+        return render(request,'profile.html',context)
     else:
         messages.add_message(request, constants.WARNING, 'Para acessar seu perfil, registre-se ou faça login em sua conta!')
         return redirect('render_login')

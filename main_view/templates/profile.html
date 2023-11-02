@@ -85,8 +85,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">ariaa a a a  aaaa a aa</div>
-        <div class="col-md-4">ariaa a a a  aaaa a aa</div>
+        <div class="col-md-4">
+            
+        </div>
+        <div class="col-md-4">
+            <h1>Histórico de compras</h1>
+            {% if hist_products is None%}
+                <h2>Você ainda não fez compras aqui!</h2>
+
+            {%else%}
+                <div class="row">
+                    {% for i in hist_products %}
+                        <div class="col-md-6">
+                            <div class="row">
+                                <img src="{{i.image.url}}" width="100%" height="100%"></img>
+                            </div>
+                            <div class="row">
+                              aaaaaaaaa  
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif%}
+        </div>
     </div>
 
 {% endblock%}
