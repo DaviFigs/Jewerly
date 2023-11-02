@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block 'title'%}{{product}}{% endblock %}
+
+{%block 'body'%}
+    {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+{% endblock%}

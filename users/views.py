@@ -30,13 +30,10 @@ def render_alter_pass(request):
 
 
 #AUTH DEFS
+@login_required(login_url='render_login')
 def logout(request):
-    if request.user.is_authenticated:
-        logouts(request)
-        return redirect('main')
-    else:
-        messages.add_message(request, constants.WARNING,'Você precisa estar logado')
-        return redirect('main')
+    logouts(request)
+    return redirect('main')
     
 def auth_login(request):
     if request.method != 'POST':
@@ -139,6 +136,7 @@ def alter_data(request):
 
 @login_required(login_url='render_login')
 def alter_password(request):
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         current_pass = request.POST.get('current_pass')
