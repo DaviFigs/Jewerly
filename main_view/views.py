@@ -3,6 +3,7 @@ from products.models import Product
 from users.models import Cart, Historic
 from django.contrib.messages import constants
 from django.contrib import messages
+from django.http import HttpResponse
 
 def home(request):
     product = Product.objects.all()
@@ -34,6 +35,10 @@ def render_profile(request):
     else:
         messages.add_message(request, constants.WARNING, 'Para acessar seu perfil, registre-se ou faça login em sua conta!')
         return redirect('render_login')
+
+def render_jew(request, id):
+    id_jew = Product.objects.get(id = id)
+    return HttpResponse (f'{id}')
 
 
 
