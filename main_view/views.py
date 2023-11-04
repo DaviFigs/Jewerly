@@ -5,6 +5,9 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
+from .defs import prod_suggest
+
+
 
 def home(request):
     try:
@@ -36,8 +39,13 @@ def render_profile(request):
     try:
         historic = Historic.objects.get(user = request.user)
         hist_products = Product.objects.filter(historic = historic)
+        if len(hist_products) == 0:
+            hist_products = 0#User have no historic buy, so we send a message on his profile
+        suggestion_products = prod_suggest(hist_products)
+        print(suggestion_products)
         context = {
             'hist_products':hist_products,
+            'suggestion_products':suggestion_products,
         }
         return render(request,'profile.html',context)
     except:

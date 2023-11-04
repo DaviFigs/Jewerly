@@ -86,12 +86,9 @@
             </div>
         </div>
         <div class="col-md-4">
-            
-        </div>
-        <div class="col-md-4">
             <h1>Histórico de compras</h1>
             <br>
-            {% if hist_products is None%}
+            {% if hist_products == 0%}
                 <h2>Você ainda não fez compras aqui!</h2>
 
             {%else%}
@@ -108,6 +105,24 @@
                     {% endfor %}
                 </div>
             {% endif%}
+        </div>
+        <div class="col-md-4">
+            <h1>Veja os produtos que você pode se interessar!</h1>
+            <div class="row">
+                <div class="col-md-2">
+
+                </div>
+
+                <div class="col-md-8">
+                    {{suggestion_products}}
+
+                </div>
+
+                <div class="col-md-2">
+
+                </div>
+            </div>
+            
         </div>
     </div>
 
