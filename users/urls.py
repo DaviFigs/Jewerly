@@ -15,3 +15,4 @@ urlpatterns = [
     path('auth_alter_pass/', views.alter_password, name="auth_alter_pass")
     
 ]
+#Teste
