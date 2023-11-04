@@ -61,6 +61,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'jew_core.wsgi.application'
 
 
