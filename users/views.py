@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as logon, logout as logouts
 from . forms import *
 from django.contrib.auth.decorators import permission_required,login_required
+from products.models import Product
 
 
 #RENDER DEFS
@@ -192,3 +193,18 @@ def alter_password(request):
         messages.add_message(request,constants.ERROR, 'Erro inesperado, tente novamente')
         return redirect('main')
 
+
+def add_product_on_cart(request, id):
+    #try:
+        if request.method ==  'GET':
+            cart = Cart.objects.get(user = request.user)
+            product = Product.objects.get(id = id)
+            cart.product.add(product)
+            cart.save
+            return redirect(f'/main_view/product/{id}')
+        else:
+            messages.add_message(request, constants.WARNING, 'Método HTTP inválido')
+            return redirect('main')
+    #except:
+        #messages.add_message(request, constants.WARNING, 'Erro inesperado')
+        #return redirect('main')

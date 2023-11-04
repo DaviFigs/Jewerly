@@ -29,7 +29,7 @@ body
 .background-color
 {background-color: rgba(207, 204, 204, 0.856);}
 .background-color2
-{background-color: #fc68e898;}
+{background-color: #e670d698;}
 .margem-left
 {padding-left: 3%;}
 .margem-right
@@ -75,7 +75,9 @@ body
 .pic-size{
     width: 40px;
     height: 40px;
-
+}
+.margin-all{
+  margin: 1%;
 }
 
 
@@ -155,4 +157,11 @@ body
   }
   .menu__item:hover {
     background-color: #CFD8DC;
+  }
+
+  /*SUbnavbar*/
+  .subnav{
+    width: 100%;
+    height: 25px;
+    background-color: white;
   }

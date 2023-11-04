@@ -14,32 +14,6 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse margem-right" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'main'%}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Promoções</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Mais opções
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Suporte</a>
-              <a class="dropdown-item" href="#">Email</a>
-              <a class="dropdown-item" href="#">Descontos</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'render_cart'%}"><img width="27" height="27px"src="{% static 'images/cart.png' %}"></a>
-          </li>
-        </ul>
-      </div>
       <form class="form-inline flex margem-right-nav">
         <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto..." aria-label="Search">
         <button class="btn btn-outline-dark my-2 my-sm-0 mini_margin" type="submit">Buscar</button>
@@ -64,10 +38,10 @@
               <div class="col-3"></div>
             </div>
             <br>
-            <div><a class="menu__item" href="#">Carrinho</a></div>
+            <div><a class="menu__item" href="{% url 'render_cart'%}">Carrinho</a></div>
             <div><a class="menu__item" href="#">Sobre</a></div>
             <div><a class="menu__item" href="#">Suporte</a></div>
-            <div><a class="menu__item" href="{% url 'logouts'%}">Sair</a></div>
+            <div><a style="color:red;" class="menu__item" href="{% url 'logouts'%}">Sair</a></div>
           </div>
         </div>
           
@@ -78,6 +52,12 @@
           </div> 
         </div>  
       {% endif %}
+    </nav>
+    <nav class="subnav align-center">
+      <div class="margin-all" ><a class="no-link-h" href="#">HOME</a></div>
+      <div class="margin-all" ><a class="no-link-h" href="#">PRODUTOS EM DESCONTO</a></div>
+      <div class="margin-all" ><a class="no-link-h" href="#">CONTATO</a></div>
+      <div class="margin-all" ><a class="no-link-h" href="#">SEI LA</a></div>
     </nav>
     {%block 'body'%}
     {%endblock%}

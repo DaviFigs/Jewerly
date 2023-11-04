@@ -42,7 +42,6 @@ def render_profile(request):
         if len(hist_products) == 0:
             hist_products = 0#User have no historic buy, so we send a message on his profile
         suggestion_products = prod_suggest(hist_products)
-        print(suggestion_products)
         context = {
             'hist_products':hist_products,
             'suggestion_products':suggestion_products,
