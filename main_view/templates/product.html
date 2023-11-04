@@ -7,5 +7,58 @@
             <div class="alert {{i.tags}}" role="alert">
                 {{i}}
             </div>
-        {% endfor %}
+    {% endfor %}
+    <div class="row margin-divs">
+        <div class="col-md-2">
+            
+        </div>
+        <div class="col-md-8">
+            <div class="row margin-divs">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md">
+                            <img src="{{product.image.url}}" width="100%" height="100%"></img>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row margin-divs">
+                        <div class="row margin-divs">
+                            <h1>{{product.name}}<h1>                           
+                        </div>
+                        <div class="col-md">
+                            <h3>Em estoque: {{product.amount}}</h3>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row margin-divs">
+                            <h4>{{product.description}}<h4>                           
+                        </div>
+                        <div class="row margin-divs">
+                            <div class="col-md-6">
+                                <h1>Unidades: 1</h1>
+                            </div>
+                            <div class="col-md-6">
+                                <h1 class="price-color">{{product.price}} R$</h1>
+                            </div>
+                        </div>
+                        <div class="row margin-divs">
+                            <div class="col-md-6">
+                                <a href="{% url 'render_register'%}"><button class="btn btn-success size-all">Comprar</button></a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{% url 'render_register'%}"><button class="btn btn-dark size-all">Adicionar ao Carrinho</button></a>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-divs">
+                Informações adicionais sobre o produto
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
 {% endblock%}
