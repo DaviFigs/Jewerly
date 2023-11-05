@@ -11,13 +11,13 @@ from base.defs import prod_suggest,sum_price_prod, show_products,filter_products
 def home(request):
     if request.method != 'POST':
         context = {
-            'product':show_products()
+            'products':show_products()
             }
         return render(request, 'site.html', context)
     else:
         filter =  request.POST.get('filter')
         context = {
-            'product':filter_products(filter)
+            'products':filter_products(filter)
         }
         return render(request, 'site.html', context)
 

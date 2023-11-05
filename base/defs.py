@@ -35,6 +35,17 @@ def show_products():
     return products
 
 def filter_products(filter):
+    if filter == '1':
+        min_price = 0;max_price = 300
+    elif filter == '2':
+        min_price = 301;max_price = 500
+    elif filter == '3':
+        min_price = 501;max_price = 800
+    elif filter == '4':
+        min_price = 801;max_price = 10000
+
+    products = Product.objects.filter(price__gte = min_price, price__lte = max_price)
+    return products
     
     
     

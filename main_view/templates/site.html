@@ -13,6 +13,8 @@
     <br>
     <div class="row ">
         <div class="col-md-2 color-white">
+            <h4 class="center-text">Filtre seus produtos!</h4>
+            <br>
             <div class"row">
                 <form method="POST" action="{% url 'main'%}">
                     {%csrf_token%}
@@ -22,16 +24,26 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="filter" value="2">
-                        <label class="form-check-label">0,00 R$ - 300,00 R$</label>
+                        <label class="form-check-label">301,00 R$ - 500,00 R$</label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="filter" value="4">
+                        <label class="form-check-label">501,00 R$ - 800,00 R$</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="filter" value="4">
+                        <label class="form-check-label">801,00 R$ +</label>
+                    </div>
+                    <div class="align-center">
                     <input type="submit"class="btn btn-outline-info" value="Filtrar">
+                    </div>
                 </form>
             </div>
         </div>
 
         <div class="col-md-9">
                 <div class="row">
-                    {% for i in product%}
+                    {% for i in products%}
                     <br>
                     <div class="col-md-3">
                         <div class="row">
