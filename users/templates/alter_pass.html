@@ -21,7 +21,7 @@
             <a class="margem-top" href="{% url 'main'%}" style="text-align:center"><p class="margem-top">Voltar</p></a>
             <h1 style="text-align:center"><span class="font-color">Troque sua senha!</span><h1>
             <br>
-            <form method="POST" action="{% url 'auth_alter_pass' %}">
+            <form  method="POST" action="{% url 'auth_alter_pass' %}">
                 {% csrf_token %}
                 <div class="mb-3">
                     <input required name="username" type="text" class="form-control" placeholder="Digite seu usuário...">
@@ -33,7 +33,7 @@
                     <input required name="new_pass" type="password" class="form-control margem-right" placeholder="Crie sua nova senha...">
                     <input required name="conf_pass" type="password" class="form-control" placeholder="Confirme sua nova senha...">
                 </div>
-                <input type="submit" class="btn btn-success" value="Mudar senha"></input>
+                &emsp;&emsp;&emsp;&emsp;<input type="submit" class="btn btn-success " value="Mudar senha"></input>
             </form>
         </div>
         <div class="col-md-3">

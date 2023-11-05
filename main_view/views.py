@@ -5,8 +5,7 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
-from .defs import prod_suggest
-
+from base.defs import prod_suggest,sum_price_prod
 
 
 def home(request):
@@ -21,9 +20,13 @@ def render_cart(request):
     try:
         cart = Cart.objects.get(user = request.user)
         products = Product.objects.filter(cart = cart)
+        if len(products) == 0:
+            products =0
+        total_price = sum_price_prod(products)
         context = {
             'cart':cart,
-            'products':products
+            'products':products,
+            'total_price':total_price,
         }
         return render(request, 'cart.html',context)
     except:
@@ -38,7 +41,6 @@ def render_profile(request):
         if len(hist_products) == 0:
             hist_products = 0#User have no historic buy, so we send a message on his profile
         suggestion_products = prod_suggest(hist_products)
-        print(suggestion_products)
         context = {
             'hist_products':hist_products,
             'suggestion_products':suggestion_products,

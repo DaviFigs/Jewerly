@@ -4,6 +4,7 @@
 
 {%block 'body'%}
 <div class="row margin-divs">
+    <h1>Seja bem vindo ao seu carrinho {{user.first_name}}</h1>
     <div class="col-md-2">
     </div>
     <div class="col-md-8">
@@ -21,6 +22,7 @@
         </div>
     </div>
     <div class="col-md-2">
+        <h1>Valor total: <span style="font-weight:bold;" class="price-color">{{total_price}} R$</span></h1>
     </div>
 </div>
 {% endblock%}

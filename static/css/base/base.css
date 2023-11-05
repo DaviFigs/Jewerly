@@ -1,6 +1,4 @@
-div{
-  border: 1px solid black;
-}
+
 .no-link{
   text-decoration: none;
 
@@ -47,7 +45,7 @@ body
 .ppadding-top
 {padding-top: 4%;}
 .margem-top
-{margin-top: 1%;}
+{margin-top: 5%;}
 .flex
 {display: flex;}
 .mini_margin

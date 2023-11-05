@@ -1,6 +1,6 @@
 from products.models import Product
 
-def prod_suggest(hist_products:Product):
+def prod_suggest(hist_products):
     total = 0
     if hist_products == 0:
         suggestions = Product.objects.filter(price__gte = 3)
@@ -14,3 +14,13 @@ def prod_suggest(hist_products:Product):
         
         suggestions = Product.objects.filter( price__gte = min_price,price__lte = max_price)
         return suggestions
+    
+def sum_price_prod(products) -> float:
+    total = 0
+    if products == 0:
+        total = 0
+        return total
+    else:
+        for i in products:
+            total += i.price
+        return total
