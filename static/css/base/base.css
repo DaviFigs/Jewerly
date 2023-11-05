@@ -1,7 +1,12 @@
-
+div{
+  border:solid 1px black;
+}
 .no-link{
   text-decoration: none;
 
+}
+.color-white{
+  background-color: white;
 }
 .no-link-h{
   text-decoration: none;
@@ -19,6 +24,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.right-border{
+  border-right: solid 1px rgb(0, 0, 0);
 }
 body
 {overflow-x: hidden;}

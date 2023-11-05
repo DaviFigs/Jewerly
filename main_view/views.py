@@ -5,15 +5,23 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
-from base.defs import prod_suggest,sum_price_prod
+from base.defs import prod_suggest,sum_price_prod, show_products,filter_products
 
 
 def home(request):
-    product = Product.objects.all()
-    context = {
-        'product':product
+    if request.method != 'POST':
+        context = {
+            'product':show_products()
+            }
+        return render(request, 'site.html', context)
+    else:
+        filter =  request.POST.get('filter')
+        context = {
+            'product':filter_products(filter)
         }
-    return render(request, 'site.html', context)
+        return render(request, 'site.html', context)
+
+
 
 @login_required(login_url = 'render_login')
 def render_cart(request):
@@ -38,9 +46,8 @@ def render_profile(request):
     try:
         historic = Historic.objects.get(user = request.user)
         hist_products = Product.objects.filter(historic = historic)
-        if len(hist_products) == 0:
-            hist_products = 0#User have no historic buy, so we send a message on his profile
-        suggestion_products = prod_suggest(hist_products)
+        
+        suggestion_products = prod_suggest(request)
         context = {
             'hist_products':hist_products,
             'suggestion_products':suggestion_products,
@@ -56,6 +63,7 @@ def render_jew(request, id):
         if product is not None:
             context = {
                 'product':product,
+                'products':show_products()
             }
             return render(request, 'product.html',context)
         else:
