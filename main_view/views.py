@@ -10,15 +10,11 @@ from .defs import prod_suggest
 
 
 def home(request):
-    try:
-        product = Product.objects.all()
-        context = {
-            'product':product
-            }
-        return render(request, 'site.html', context)
-    except:
-        messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
-        return redirect('main')
+    product = Product.objects.all()
+    context = {
+        'product':product
+        }
+    return render(request, 'site.html', context)
 
 @login_required(login_url = 'render_login')
 def render_cart(request):
@@ -42,6 +38,7 @@ def render_profile(request):
         if len(hist_products) == 0:
             hist_products = 0#User have no historic buy, so we send a message on his profile
         suggestion_products = prod_suggest(hist_products)
+        print(suggestion_products)
         context = {
             'hist_products':hist_products,
             'suggestion_products':suggestion_products,

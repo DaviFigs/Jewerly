@@ -3,16 +3,24 @@
 {% block 'title'%}Carrinho{% endblock%}
 
 {%block 'body'%}
-    {%for i in products%}
-        <br>
-        <div class="col-md-3">
-            <div class="row">
-                <img class="radius" src="{{i.image.url}}" width="100%" height="100%">
-            </div>
-            <div class="row">
-                <h6>&nbsp; {{i.name}} {{i.price}} R$</h6>
-                <p>{{i.description}}</p>
-            </div>
+<div class="row margin-divs">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <div class="row margin-divs">
+            {% for i in products %}
+                <div class="col-md-3 ">
+                    <div class="row ">
+                        <a href="{% url 'render_jew' i.id %}"><img src="{{i.image.url}}" width="100%" height="100%"></img></a>
+                    </div>
+                    <div class="row">
+                        <h6 class="center-text"><a class="no-link-h" href="{% url 'render_jew' i.id %}">{{i.name}}</a>&emsp;<span class="price-color">{{i.price}}R$</span></h6>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
 {% endblock%}
