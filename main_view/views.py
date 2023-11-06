@@ -5,13 +5,13 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
-from base.defs import prod_suggest,sum_price_prod, show_products,filter_products
+from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products
 
 
 def home(request):
     if request.method != 'POST':
         context = {
-            'products':show_products()
+            'products':get_all_products()
             }
         return render(request, 'site.html', context)
     else:
@@ -29,15 +29,10 @@ def home(request):
 @login_required(login_url = 'render_login')
 def render_cart(request):
     try:
-        cart = Cart.objects.get(user = request.user)
-        products = Product.objects.filter(cart = cart)
-        if len(products) == 0:
-            products =0
-        total_price = sum_price_prod(products)
+        products = get_cart_products(request)
         context = {
-            'cart':cart,
             'products':products,
-            'total_price':total_price,
+            'total_price':get_total_cart_price(products),
         }
         return render(request, 'cart.html',context)
     except:
@@ -66,7 +61,7 @@ def render_jew(request, id):
         if product is not None:
             context = {
                 'product':product,
-                'products':show_products()
+                'products':get_all_products()
             }
             return render(request, 'product.html',context)
         else:
@@ -76,6 +71,7 @@ def render_jew(request, id):
         messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
-
+def render_buy(request):
+    return render(request, 'buy.html')
 
     

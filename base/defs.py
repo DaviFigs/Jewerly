@@ -1,5 +1,7 @@
 from products.models import Product
-from users.models import Historic
+from users.models import Historic,Cart
+
+    
 
 def prod_suggest(request):
     total = 0
@@ -20,17 +22,26 @@ def prod_suggest(request):
         suggestions = Product.objects.filter( price__gte = min_price,price__lte = max_price)
         return suggestions
     
-def sum_price_prod(products) -> float:
+
+def get_cart_products(request):
+    cart = Cart.objects.get(user = request.user)
+    products = Product.objects.filter(cart = cart)
+    if len(products) == 0:
+        products = None;
+        return products
+    else:
+        return products
+    
+def get_total_cart_price(products) -> float:
     total = 0
-    if products == 0:
-        total = 0
+    if products is None:
         return total
     else:
         for i in products:
             total += i.price
         return total
 
-def show_products():
+def get_all_products():
     products = Product.objects.all()
     return products
 
@@ -46,6 +57,5 @@ def filter_products(filter):
 
     products = Product.objects.filter(price__gte = min_price, price__lte = max_price)
     return products
-    
     
     

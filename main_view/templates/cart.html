@@ -9,20 +9,26 @@
     </div>
     <div class="col-md-8">
         <div class="row margin-divs">
-            {% for i in products %}
-                <div class="col-md-3 ">
-                    <div class="row ">
-                        <a href="{% url 'render_jew' i.id %}"><img class="radius" src="{{i.image.url}}" width="100%" height="100%"></img></a>
-                    </div> 
-                    <div class="row">
-                        <h6 class="center-text"><a class="no-link-h" href="{% url 'render_jew' i.id %}">{{i.name}}</a>&emsp;<span class="price-color">{{i.price}}R$</span></h6>
+            {% if products is None%}
+                <h1>Ainda não há há produtos aqui :(</h1>
+                
+
+            {%else%}
+                {% for i in products %}
+                    <div class="col-md-3 ">
+                        <div class="row ">
+                            <a href="{% url 'render_jew' i.id %}"><img class="radius" src="{{i.image.url}}" width="100%" height="100%"></img></a>
+                        </div> 
+                        <div class="row">
+                            <h6 class="center-text"><a class="no-link-h" href="{% url 'render_jew' i.id %}">{{i.name}}</a>&emsp;<span class="price-color">{{i.price}}R$</span></h6>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="col-md-2">
-        <h1>Valor total: <span style="font-weight:bold;" class="price-color">{{total_price}} R$</span></h1>
+        <h1>Valor total:<br><span style="font-weight:bold;" class="price-color">{{total_price}} R$</span></h1>
     </div>
 </div>
 {% endblock%}

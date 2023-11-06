@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block 'title' %}Sua Compra{% endblock %}
+{% block 'body'%}
+
+{% if messages %}
+    {% for i in messages%}
+        <div class="alert {{i.tags}}" role="alert">
+            {{i}}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<div class="row margin-divs">
+    <div class="col-md-3">
+        <h2>Adicione produtos do seu carrinho</h2>
+        <div class="row">
+            <!--{% for product in products %}
+                <div class="col-md-6">
+
+                </div>
+            {% endfor %}-->
+        </div>
+    </div>
+    <div class="col-md-3">a a a</div>
+    <div class="col-md-3">aaaa</div>
+    <div class="col-md-3">aaaa</div>
+    
+</div>
+
+{% endblock %}
