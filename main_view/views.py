@@ -15,12 +15,15 @@ def home(request):
             }
         return render(request, 'site.html', context)
     else:
-        filter =  request.POST.get('filter')
-        context = {
-            'products':filter_products(filter)
-        }
-        return render(request, 'site.html', context)
-
+        try:
+            filter =  request.POST.get('filter')
+            context = {
+                'products':filter_products(filter)
+            }
+            return render(request, 'site.html', context)
+        except:
+            messages.add_message(request, constants.WARNING, 'Selecione um filtro antes de clicar no botão!')
+            return redirect('main')
 
 
 @login_required(login_url = 'render_login')
