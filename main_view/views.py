@@ -68,6 +68,10 @@ def render_jew(request, id):
         return redirect('main')
 
 def render_buy(request):
-    return render(request, 'buy.html')
+    products = get_all_products()
+    context = {
+        'products':products
+    }
+    return render(request, 'buy.html', context)
 
     

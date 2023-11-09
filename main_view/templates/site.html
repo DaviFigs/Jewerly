@@ -11,12 +11,12 @@
         {% endfor %}
     {% endif %}
     <br>
-    <div class="row ">
+    <div class="row">
         <div class="col-md-2">
             <h4 class="center-text">Filtre seus produtos!</h4>
             <br>
             <div class"row">
-                <form method="POST" action="{% url 'main'%}">
+                <form class="margin-divs" method="POST" action="{% url 'main'%}">
                     {%csrf_token%}
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="filter" value="1">
@@ -51,7 +51,7 @@
         </div>
 
         <div class="col-md-9">
-                <div class="row">
+                <div class="row ">
                     {% for i in products%}
                     <br>
                     <div class="col-md-3">
