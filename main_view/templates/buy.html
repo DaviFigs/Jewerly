@@ -3,21 +3,20 @@
 {% block 'title' %}Sua Compra{% endblock %}
 {% block 'body'%}
 
-{% if messages %}
-    {% for i in messages%}
-        <div class="alert {{i.tags}}" role="alert">
-            {{i}}
-        </div>
-    {% endfor %}
-{% endif %}
+    {% if messages %}
+        {% for i in messages%}
+            <div class="alert {{i.tags}}" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
 
-
-<div class="row margin-divs">
-    <div class="col-md-2">
-        <h2>Adicione produtos do seu carrinho ! </h2>
-        <div class="row">
-            <div class="col-md-12">
-                {% for i in products %}
+    <div class="row margin-divs">
+        <div class="col-md-2">
+            <h2>Adicione produtos do seu carrinho ! </h2>
+            <div class="row">
+                <div class="col-md-12">
+                    {% for i in products %}
                         <div class="row ">
                             <a href="{% url 'render_jew' i.id %}"><img class="radius" src="{{i.image.url}}" width="100%" height="100%"></img></a>
                         </div>
@@ -25,12 +24,10 @@
                             <h6 class="center-text"><a class="no-link-h" href="{% url 'render_jew' i.id %}">{{i.name}}</a>&emsp;<span class="price-color">{{i.price}}R$</span></h6>
                         </div>
                     {% endfor %}
+                </div>
             </div>
         </div>
+        <div class="col-md-5">a a a</div>
+        <div class="col-md-5">aaaa</div>    
     </div>
-    <div class="col-md-5">a a a</div>
-    <div class="col-md-5">aaaa</div>
-    
-</div>
-
 {% endblock %}

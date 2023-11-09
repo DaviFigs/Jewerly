@@ -45,7 +45,7 @@
                         </div>
                         <div class="row margin-divs">
                             <div class="col-md-6">
-                                <a href="{% url 'render_buy'%}"><button class="btn btn-success size-all">Comprar</button></a>
+                                <a href="{% url 'render_buy' product.id %}"><button class="btn btn-success size-all">Comprar</button></a>
                             </div>
                             <div class="col-md-6">
                                 <a href="{% url 'add_product' product.id %} "><button class="btn btn-dark size-all">Adicionar ao Carrinho</button></a>

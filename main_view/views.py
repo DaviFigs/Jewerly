@@ -67,7 +67,7 @@ def render_jew(request, id):
         messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
-def render_buy(request):
+def render_buy(request, id):
     products = get_all_products()
     context = {
         'products':products
