@@ -74,7 +74,7 @@ DATABASES = {
         'NAME': 'jewerly_db',
         'HOST':'localhost',
         'PORT':'3306',
-        'PASSWORD':'',
+        'PASSWORD':'mysql',
         'USER':'root',
     }
 }

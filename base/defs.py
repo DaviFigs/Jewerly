@@ -7,15 +7,17 @@ def prod_suggest(request):
     total = 0
     historic = Historic.objects.get(user = request.user)
     hist_products = Product.objects.filter(historic = historic)
-    if len(hist_products) ==0:
-        hist_products = 0
 
-    if hist_products == 0:
+    if len(hist_products) == 0:
+        suggestions = get_all_products()
         return suggestions
+    
     else:
+        count =0
         for i in hist_products:
             total += i.price
-        avg_user_products = total/len(hist_products)
+            count +=1
+        avg_user_products = total/count
         min_price = (avg_user_products*50)/100
         max_price = (avg_user_products*150)/100
         
@@ -32,6 +34,16 @@ def get_cart_products(request):
     else:
         return products
     
+def get_hist_products(request):
+    historic = Historic.objects.get(user = request.user)
+    hist_products = Product.objects.filter(historic = historic)
+    if len(hist_products) == 0:
+        hist_products = 0
+
+    return hist_products
+    
+
+
 def get_total_cart_price(products) -> float:
     total = 0
     if products is None:

@@ -5,7 +5,7 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
-from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products
+from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products,get_hist_products
 
 
 def home(request):
@@ -41,14 +41,10 @@ def render_cart(request):
 
 @login_required(login_url = 'render_login')
 def render_profile(request):
-    try:
-        historic = Historic.objects.get(user = request.user)
-        hist_products = Product.objects.filter(historic = historic)
-        
-        suggestion_products = prod_suggest(request)
+    try:        
         context = {
-            'hist_products':hist_products,
-            'suggestion_products':suggestion_products,
+            'hist_products':get_hist_products(request),
+            'suggestion_products':prod_suggest(request),
         }
         return render(request,'profile.html',context)
     except:
