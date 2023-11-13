@@ -5,7 +5,8 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
-from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products,get_hist_products
+from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products,get_hist_products\
+, get_product_by_id
 
 
 def home(request):
@@ -70,7 +71,9 @@ def render_jew(request, id):
 def render_buy(request, id):
     products = get_all_products()
     context = {
-        'products':products
+        'products':products,
+        'buy_prod':get_product_by_id(id),
+        'cart_prod':get_cart_products(request)
     }
     return render(request, 'buy.html', context)
 

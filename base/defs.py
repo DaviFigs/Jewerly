@@ -3,6 +3,15 @@ from users.models import Historic,Cart
 
     
 
+def get_product_by_id(id_prod):
+    product = Product.objects.get(id = id_prod)
+    if product is None:
+        return 0
+    else:
+        return product
+
+
+
 def prod_suggest(request):
     total = 0
     historic = Historic.objects.get(user = request.user)
