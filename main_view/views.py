@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
 from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products,get_hist_products\
-, get_product_by_id
+, get_product_by_id,get_products_by_ids
 
 
 def home(request):
@@ -68,13 +68,21 @@ def render_jew(request, id):
         messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
+def add_product(request,id):
+    return redirect(f'/main_view/your_buy/1/?new_prod={id}')
+
 def render_buy(request, id):
-    products = get_all_products()
-    context = {
-        'products':products,
-        'buy_prod':get_product_by_id(id),
-        'cart_prod':get_cart_products(request)
-    }
-    return render(request, 'buy.html', context)
+    if request.method == 'POST':
+        products = request.POST.get('radio')
+        product_list = get_products_by_ids(products)
+    else:
+        main_prod = get_product_by_id(id)
+        context = {
+            'products':get_all_products(),
+            'buy_prod':main_prod,
+            'cart_prod':get_cart_products(request),
+        }
+        print(context)
+        return render(request, 'buy.html', context)
 
     

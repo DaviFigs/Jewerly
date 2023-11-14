@@ -9,8 +9,15 @@ def get_product_by_id(id_prod):
         return 0
     else:
         return product
-
-
+def get_products_by_ids(*args):
+    prod_list = []
+    for i in args:
+        product = Product.objects.get(id = i)
+        if product is not None:
+            prod_list.append(product)
+    return prod_list
+            
+        
 
 def prod_suggest(request):
     total = 0
@@ -51,7 +58,6 @@ def get_hist_products(request):
 
     return hist_products
     
-
 
 def get_total_cart_price(products) -> float:
     total = 0
