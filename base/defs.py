@@ -9,13 +9,15 @@ def get_product_by_id(id_prod):
         return 0
     else:
         return product
-def get_products_by_ids(*args):
-    prod_list = []
-    for i in args:
-        product = Product.objects.get(id = i)
+    
+def get_products_by_ids(prod_list:list):
+    prods_purchase = []
+    prod_list = [int(id_prod) for id_prod in prod_list]
+    for id_prod in prod_list:
+        product = Product.objects.get(id = id_prod)
         if product is not None:
-            prod_list.append(product)
-    return prod_list
+            prods_purchase.append(product)
+    return prods_purchase
             
         
 
@@ -59,7 +61,7 @@ def get_hist_products(request):
     return hist_products
     
 
-def get_total_cart_price(products) -> float:
+def get_total_price(products:list) -> float:
     total = 0
     if products is None:
         return total

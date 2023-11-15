@@ -5,21 +5,22 @@ from django.contrib.messages import constants
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required,login_required
-from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products,get_hist_products\
-, get_product_by_id,get_products_by_ids
+from base import defs as df
+#from base.defs import prod_suggest,get_total_cart_price, get_all_products,filter_products,get_cart_products,get_hist_products\
+#, get_product_by_id,get_products_by_ids
 
 
 def home(request):
     if request.method != 'POST':
         context = {
-            'products':get_all_products()
+            'products':df.get_all_products()
             }
         return render(request, 'site.html', context)
     else:
         try:
             filter =  request.POST.get('filter')
             context = {
-                'products':filter_products(filter)
+                'products':df.filter_products(filter)
             }
             return render(request, 'site.html', context)
         except:
@@ -30,10 +31,10 @@ def home(request):
 @login_required(login_url = 'render_login')
 def render_cart(request):
     try:
-        products = get_cart_products(request)
+        products = df.get_cart_products(request)
         context = {
             'products':products,
-            'total_price':get_total_cart_price(products),
+            'total_price':df.get_total_price(products),
         }
         return render(request, 'cart.html',context)
     except:
@@ -44,8 +45,8 @@ def render_cart(request):
 def render_profile(request):
     try:        
         context = {
-            'hist_products':get_hist_products(request),
-            'suggestion_products':prod_suggest(request),
+            'hist_products':df.get_hist_products(request),
+            'suggestion_products':df.prod_suggest(request),
         }
         return render(request,'profile.html',context)
     except:
@@ -58,7 +59,7 @@ def render_jew(request, id):
         if product is not None:
             context = {
                 'product':product,
-                'products':get_all_products()
+                'products':df.get_all_products()
             }
             return render(request, 'product.html',context)
         else:
@@ -72,17 +73,30 @@ def add_product(request,id):
     return redirect(f'/main_view/your_buy/1/?new_prod={id}')
 
 def render_buy(request, id):
-    if request.method == 'POST':
-        products = request.POST.get('radio')
-        product_list = get_products_by_ids(products)
-    else:
-        main_prod = get_product_by_id(id)
+    if request.method == 'GET':
+        product_list = []
+        product_list.append(df.get_product_by_id(id))
+
         context = {
-            'products':get_all_products(),
-            'buy_prod':main_prod,
-            'cart_prod':get_cart_products(request),
+            'buy_prod':df.get_product_by_id(id),
+            'products':df.get_all_products(),
+            'purchase_products':product_list,
+            'cart_prod':df.get_cart_products(request),
         }
-        print(context)
+        return render(request, 'buy.html', context)
+    
+    if request.method == 'POST':
+        products = request.POST.getlist('radio')
+        product_list = df.get_products_by_ids(products)
+        product_list.insert(0,df.get_product_by_id(id))
+        print(product_list)
+        context = {
+            'buy_prod':df.get_product_by_id(id),
+            'products':df.get_all_products(),
+            'cart_prod':df.get_cart_products(request),
+            'purchase_products':product_list,
+            'total_price':df.get_total_price(product_list)
+        }
         return render(request, 'buy.html', context)
 
     

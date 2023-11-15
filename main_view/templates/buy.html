@@ -13,7 +13,7 @@
 
     <div class="row margin-divs">
         <div class="col-md-2">
-            <h2>Adicione produtos do seu carrinho ! </h2>
+            <h3>Clique e adicione os produtos do seu carrinho, a compra!</h3>
             <div class="row">
                 <div class="col-md-12">
                     <form action="{% url 'render_buy' buy_prod.id%}" method="POST">{% csrf_token %}
@@ -52,23 +52,25 @@
             </div>
             <div class="row margin-divs">
                 <h1>Produtos na compra!</h1>
-                {% for product in products%}
+                {% for product in purchase_products%}
                     <div class="col-md-3">
                         <div class="row">
                             <img class="radius" src="{{product.image.url}}" width="100%" height="100%"></img>
                         </div>
                         <div class="row">
                             <h6 class="center-text">{{product.name}}: <span class="price-color">{{product.price}} R$</span></h6>
-                        </div>
-                        <div class="row align-center">
-                            <a href="{%url 'add_product' product.id %}"><button class="btn btn-info">Adicionar a compra</button></a>
-                        </div>     
+                        </div>    
                     </div>
                 {% endfor %}
             </div>
         </div>
         <div class="col-md-3">
-            TOTAL DA COMPRA
+            <div class="row">
+                <h1>Sua compra esta avaliada em: <span class="price-color">{{total_price}} R$</span></h1>
+            </div>
+            <div class="row">
+                
+            </div>
         </div>    
     </div>
 {% endblock %}
