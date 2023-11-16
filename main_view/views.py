@@ -89,7 +89,6 @@ def render_buy(request, id):
         products = request.POST.getlist('radio')
         product_list = df.get_products_by_ids(products)
         product_list.insert(0,df.get_product_by_id(id))
-        print(product_list)
         context = {
             'buy_prod':df.get_product_by_id(id),
             'products':df.get_all_products(),

@@ -80,7 +80,11 @@
                     <h1>Total: <span class="price-color">{{buy_prod.price}} R$</span></h1>
                 {% endif %}
             </div>
+            <br>
             <div class="row">
+                <a href="{% url 'finishing_purchase' purchase_products %}"><button class="btn btn-success">Terminar compra</button></a>
+            </div>
+            <!--<div class="row">
                 <form action="#" method="POST" >{%csrf_token%}
                     <div>
                         <input class="form-control" type="text" placeholder="Adicione um código promocional...">
@@ -91,7 +95,7 @@
                     </div>
                 </form>
                 
-            </div>
+            </div>-->
         </div>    
     </div>
 {% endblock %}

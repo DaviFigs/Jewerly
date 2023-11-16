@@ -1,4 +1,4 @@
-from products.models import Product
+from products.models import Product,Discount
 from users.models import Historic,Cart
 
     
@@ -88,3 +88,14 @@ def filter_products(filter):
     return products
     
     
+def auth_discount(code):
+    auth_code = Discount.objects.get(name = code)
+    if auth_code is not None:
+        return auth_code.percent_by_price
+    else:
+        return 0
+
+
+def making_discount(discount_percent, value):
+    final_price = value - ((value * 10)/100)
+    return final_price
