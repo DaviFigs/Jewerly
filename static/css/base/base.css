@@ -3,6 +3,12 @@
   text-decoration: none;
 
 }
+.border{
+  border: solid 1px black;
+}
+.margin{
+  margin: 5px;
+}
 .color-white{
   background-color: white;
 }
@@ -40,14 +46,9 @@ body
 {margin-right: 0.5%;}
 .margem-right-nav
 {margin-right: 5%;}
-.margin-divs{
-  margin:1%;
-}
+.margin-divs{margin:1%;}
 .padding-left-profile
-{
-  padding-left: 10%;
-}
-
+{padding-left: 10%;}
 .ppadding-top
 {padding-top: 4%;}
 .margem-top
