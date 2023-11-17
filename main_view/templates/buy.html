@@ -84,7 +84,20 @@
             <div class="row">
                 <a href="{% url 'finishing_purchase' %}"><button class="btn btn-success">Terminar compra</button></a>
             </div>
-
+            <br>
+            <div class="row">
+                <form method="POST" >
+                    {%for i in purchase_products%}
+                        <div class="row">
+                            <hr>
+                            <div>
+                                <input checked class="form-check-input" type="checkbox" name="radio" value="{{i.id}}"id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">  <h6 class="center-text"><a class="no-link-h" href="{% url 'render_jew' i.id %}">{{i.name}}</a>&emsp;<span class="price-color">{{i.price}}R$</span></h6>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </form>
+            </div>
             <!--<div class="row">
                 <form action="#" method="POST" >{%csrf_token%}
                     <div>
