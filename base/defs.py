@@ -59,15 +59,18 @@ def get_hist_products(request):
 
     return hist_products
 
-def auth_discount(discount:str) -> float:
-    discount = discount.lower()
-    purchase_discount = Discount.objects.get(name = discount)
-    if purchase_discount is not None:
-        discount_percent = discount.percent_by_price 
-    else:
-        discount_percent = 0
+def auth_discount(code):
+    code = code.lower()
+    auth_code = Discount.objects.filter(name = code)
 
-    return discount_percent   
+    if len(auth_code)>0:
+        code = auth_code[0]
+        discount =  code.percent_by_price
+        return discount
+        
+    no_discount = Discount.objects.get(name = 'none')
+    discount = no_discount.percent_by_price
+    return discount
 
 def get_total_price(products:list) -> float:
     total = 0
@@ -78,7 +81,7 @@ def get_total_price(products:list) -> float:
             total += i.price
         return total
 
-def get_total_price_with_discount(discount:float, total_price:float) -> float:
+def get_total_price_with_discount(discount, total_price):
     total_price = total_price - (total_price*discount/100)
     return total_price
 
@@ -100,14 +103,3 @@ def filter_products(filter):
     return products
     
     
-def auth_discount(code):
-    auth_code = Discount.objects.get(name = code)
-    if auth_code is not None:
-        return auth_code.percent_by_price
-    else:
-        return 0
-
-
-def making_discount(discount_percent, value):
-    final_price = value - ((value * 10)/100)
-    return final_price
