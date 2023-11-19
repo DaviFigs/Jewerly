@@ -41,6 +41,7 @@ def render_cart(request):
         messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
+
 @login_required(login_url = 'render_login')
 def render_profile(request):
     try:        
@@ -69,33 +70,34 @@ def render_jew(request, id):
         messages.add_message(request, constants.ERROR, 'Erro inesperado, tente novamente!')
         return redirect('main')
 
-def add_product(request,id):
-    return redirect(f'/main_view/your_buy/1/?new_prod={id}')
 
 def render_buy(request, id):
-    if request.method == 'GET':
-        product_list = []
-        product_list.append(df.get_product_by_id(id))
+    try:
+        if request.method == 'GET':
+            product_list = []
+            product_list.append(df.get_product_by_id(id))
 
-        context = {
-            'buy_prod':df.get_product_by_id(id),
-            'products':df.get_all_products(),
-            'purchase_products':product_list,
-            'cart_prod':df.get_cart_products(request),
-        }
-        return render(request, 'buy.html', context)
-    
-    if request.method == 'POST':
-        products = request.POST.getlist('radio')
-        product_list = df.get_products_by_ids(products)
-        product_list.insert(0,df.get_product_by_id(id))
-        context = {
-            'buy_prod':df.get_product_by_id(id),
-            'products':df.get_all_products(),
-            'cart_prod':df.get_cart_products(request),
-            'purchase_products':product_list,
-            'total_price':df.get_total_price(product_list)
-        }
-        return render(request, 'buy.html', context)
+            context = {
+                'buy_prod':df.get_product_by_id(id),
+                'products':df.get_all_products(),
+                'purchase_products':product_list,
+                'cart_prod':df.get_cart_products(request),
+            }
+            return render(request, 'buy.html', context)
 
+        if request.method == 'POST':
+            products = request.POST.getlist('radio')
+            product_list = df.get_products_by_ids(products)
+            product_list.insert(0,df.get_product_by_id(id))
+            context = {
+                'buy_prod':df.get_product_by_id(id),
+                'products':df.get_all_products(),
+                'cart_prod':df.get_cart_products(request),
+                'purchase_products':product_list,
+                'total_price':df.get_total_price(product_list)
+            }
+            return render(request, 'buy.html', context)
+    except:
+        messages.add_message(request, constants.WARNING, 'Erro interno, tente novamente')
+        return redirect(f'/your_buy/{id}/')
     

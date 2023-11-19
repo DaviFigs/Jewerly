@@ -1,7 +1,6 @@
 from products.models import Product,Discount
 from users.models import Historic,Cart
 
-    
 
 def get_product_by_id(id_prod):
     product = Product.objects.get(id = id_prod)
@@ -59,7 +58,16 @@ def get_hist_products(request):
         hist_products = 0
 
     return hist_products
-    
+
+def auth_discount(discount:str) -> float:
+    discount = discount.lower()
+    purchase_discount = Discount.objects.get(name = discount)
+    if purchase_discount is not None:
+        discount_percent = discount.percent_by_price 
+    else:
+        discount_percent = 0
+
+    return discount_percent   
 
 def get_total_price(products:list) -> float:
     total = 0
@@ -69,6 +77,10 @@ def get_total_price(products:list) -> float:
         for i in products:
             total += i.price
         return total
+
+def get_total_price_with_discount(discount:float, total_price:float) -> float:
+    total_price = total_price - (total_price*discount/100)
+    return total_price
 
 def get_all_products():
     products = Product.objects.all()

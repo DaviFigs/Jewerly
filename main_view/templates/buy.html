@@ -83,8 +83,9 @@
             <br>
             <div class="row">
                 <form method="POST" action="{% url 'finishing_purchase'%}" >{%csrf_token%}
-                    <div>
-                        <a href="{% url 'finishing_purchase' %}"><button class="btn btn-success">Terminar compra</button></a>
+                    <div class="flex">
+                        <input class="btn btn-outline-success margem-right" type="submit" value="Finalizar compra">
+                        <input class="form-control " type="text" name="discount" placeholder="Adicione um código de desconto">
                     </div>
                     <br>
                     {%for i in purchase_products%}
