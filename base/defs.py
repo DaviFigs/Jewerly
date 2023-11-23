@@ -109,3 +109,6 @@ def filter_products(filter):
     return products
     
     
+def order_by_price():
+    products = Product.objects.order_by('price')
+    return products
