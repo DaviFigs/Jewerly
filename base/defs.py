@@ -43,14 +43,20 @@ def prod_suggest(request):
     
 
 def get_cart_products(request):
-    cart = Cart.objects.get(user = request.user)
-    products = Product.objects.filter(cart = cart)
-    if len(products) == 0:
-        products = None;
-        return products
+
+    if request.user.is_authenticated:
+        cart = Cart.objects.get(user = request.user)
+        products = Product.objects.filter(cart = cart)
+        if len(products) == 0:
+            products = None;
+            return products
+        else:
+            return products
     else:
+        products = get_all_products()
         return products
-    
+
+        
 def get_hist_products(request):
     historic = Historic.objects.get(user = request.user)
     hist_products = Product.objects.filter(historic = historic)

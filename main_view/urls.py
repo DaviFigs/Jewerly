@@ -6,5 +6,4 @@ urlpatterns = [
         path('profile/', views.render_profile, name="render_profile"),  
         path('product/<int:id>/', views.render_jew, name="render_jew"),
         path('your_buy/<int:id>/', views.render_buy, name="render_buy"),
-        
 ]
