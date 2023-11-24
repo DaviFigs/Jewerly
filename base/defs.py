@@ -18,8 +18,6 @@ def get_products_by_ids(prod_list:list):
             prods_purchase.append(product)
     return prods_purchase
             
-        
-
 def prod_suggest(request):
     total = 0
     historic = Historic.objects.get(user = request.user)
@@ -41,7 +39,6 @@ def prod_suggest(request):
         suggestions = Product.objects.filter( price__gte = min_price,price__lte = max_price)
         return suggestions
     
-
 def get_cart_products(request):
 
     if request.user.is_authenticated:
@@ -56,7 +53,6 @@ def get_cart_products(request):
         products = get_all_products()
         return products
 
-        
 def get_hist_products(request):
     historic = Historic.objects.get(user = request.user)
     hist_products = Product.objects.filter(historic = historic)
@@ -107,7 +103,6 @@ def filter_products(filter):
 
     products = Product.objects.filter(price__gte = min_price, price__lte = max_price)
     return products
-    
     
 def order_by_price():
     products = Product.objects.order_by('price')

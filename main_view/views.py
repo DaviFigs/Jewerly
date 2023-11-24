@@ -27,7 +27,6 @@ def home(request):
             messages.add_message(request, constants.WARNING, 'Selecione um filtro antes de clicar no botão!')
             return redirect('main')
 
-
 @login_required(login_url = 'render_login')
 def render_cart(request):
     try:
