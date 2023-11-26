@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import permission_required,login_required
 from base import defs as df
 import locale
 
-
-
+#fazendo search
+#objetos = Classe.objects.filter(name__contains = nome)
 def finishing_purchase(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
