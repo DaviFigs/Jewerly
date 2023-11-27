@@ -12,8 +12,9 @@
     <nav class="navbar navbar-expand-lg navbar background-color2">
       <a class="navbar-brand margem-left" href="#">Jana Jóias</a>
       </button>
-      <form class="form-inline flex margem-right-nav">
-        <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto..." aria-label="Search">
+      <form class="form-inline flex margem-right-nav" action="{% url 'search'%}" method="GET">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto..." name="product_name"  aria-label="Search">
         <button class="btn btn-outline-dark my-2 my-sm-0 mini_margin" type="submit">Buscar</button>
       </form>
       
