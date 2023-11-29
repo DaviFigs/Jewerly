@@ -1,10 +1,13 @@
 from products.models import Product,Discount
 from users.models import Historic,Cart
-from django.db.models.functions import Lower
+from django.db.models import Q
+
 
 def search_products(typed):
     typed = typed.lower()
-    products = Product.objects.filter(name__contains = typed)
+    products = Product.objects.filter(
+        Q(name__icontains = typed)
+        |Q(description__icontains = typed))
     return products
 
 def get_product_by_id(id_prod):
