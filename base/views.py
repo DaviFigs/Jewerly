@@ -8,6 +8,7 @@ def search(request):
     context = {
         'search':typed,
         'products':product_list,
+        'count':df.count_products(product_list)
     }
     return render(request, 'search_list.html', context)
     

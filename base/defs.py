@@ -10,6 +10,10 @@ def search_products(typed):
         |Q(description__icontains = typed))
     return products
 
+def count_products(product_list):
+    count = len(product_list)
+    return count
+
 def get_product_by_id(id_prod):
     product = Product.objects.get(id = id_prod)
     if product is None:
