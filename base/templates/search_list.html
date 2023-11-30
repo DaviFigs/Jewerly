@@ -10,19 +10,25 @@
 
         </div>
         <div class="col-md-2 ">
+            {% if products  == 0%}
+            <h1>Nenhum produto encontrado</h1>
+
+            {% else %}
             
-            {% for product in products %}
-                <div class="row">
-                    <div class="col-md-6">
-                        <img class="radius" src="{{product.image.url}}" width="100%" height="100%"></img>
+                {% for product in products %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="radius" src="{{product.image.url}}" width="100%" height="100%"></img>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            {{product.name}}
+                        </div>
                     </div>
-                
-                    <div class="col-md-6">
-                        {{product.name}}
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
+        <div class="col-md-5"></div>
         <div class="col-md-4"></div>
     </div>
 
