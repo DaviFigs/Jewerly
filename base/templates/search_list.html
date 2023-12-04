@@ -3,10 +3,16 @@
 {% block 'title'%}Busca por {{search}}{% endblock%}
 
 {% block 'body'%}
+
+{{filter}}
     <br>
     <div class="row">
         <div class="col-md-2">
-
+            <form action="{% url 'search'%}" method="POST"> {%csrf_token%}
+                <input type="hidden" name="user_search" value="{{search}}">
+                <input type="text" name="search_filter">
+                <input type="submit" class="btn btn-success"> 
+            </form>
         </div>
         <div class="col-md-8 ">
             {% if products  == 0%}
