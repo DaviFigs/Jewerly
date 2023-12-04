@@ -3,8 +3,7 @@
 {% block 'title'%}Busca por {{search}}{% endblock%}
 
 {% block 'body'%}
-
-<br>
+    <br>
     <div class="row">
         <div class="col-md-2">
 
@@ -21,7 +20,7 @@
                                     <a href="{% url 'render_jew' i.id %}"><img class="radius" src="{{i.image.url}}" width="100%" height="100%"></img></a>
                                 </div>
                                 <div class="row">
-                                    <h6 class="center-text">{{i.name}}&emsp;<span class="price-color">{{i.price}} R$</span></h6>
+                                    <h6 class="center-text">{{i.name}} <span class="price-color">{{i.price}}R$</span></h6>
                                 </div>
                             </div>
                         {% endfor%} 
@@ -30,7 +29,4 @@
         </div>
         <div class="col-md-2"></div>
     </div>
-
-
-
 {% endblock %}
