@@ -16,7 +16,6 @@ def finishing_purchase(request):
 
             products = df.get_products_by_ids(products_ids)
             purchase_discount = df.auth_discount(discount)
-            print(purchase_discount)
 
             total_price = df.get_total_price(products)
             
