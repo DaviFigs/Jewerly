@@ -14,7 +14,7 @@
       </button>
       <form class="form-inline flex margem-right-nav" action="{% url 'search'%}" method="GET">
         {% csrf_token %}
-        <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto..." name="product_name"  aria-label="Search">
+        <input class="form-control mr-sm-2 " type="search" placeholder="Pesquise um produto..." name="search_by"  aria-label="Search">
         <button class="btn btn-outline-dark my-2 my-sm-0 mini_margin" type="submit">Buscar</button>
       </form>
       

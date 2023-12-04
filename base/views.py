@@ -2,10 +2,10 @@ from django.shortcuts import render
 from base import defs as df
 def search(request):
 
-    typed = request.GET.get('product_name')
+    typed = request.GET.get('search_by')
     product_list = df.search_products(typed)
-    print(product_list)
-    print(len(product_list))
+
+    
     if len(product_list) == 0:
         product_list = 0
     context = {
