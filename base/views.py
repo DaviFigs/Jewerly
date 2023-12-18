@@ -21,7 +21,7 @@ def search(request):
         search_filter = request.POST.get('search_filter')
         
         product_list = df.search_products(user_search)
-        context={
+        context= {
             'filter':search_filter,
             'search':user_search,
             'products':product_list,
